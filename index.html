@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Courtroom Live Messenger 2009</title>
+<title>Courtroom Live Messenger (Tabrica)</title>
 <style>
   * { box-sizing: border-box; user-select: none; }
   :root {
@@ -20,684 +20,120 @@
     --contact-active: linear-gradient(180deg,rgba(208,232,255,.8) 0%,rgba(160,204,255,.8) 100%);
     --popup-bg: rgba(255,255,255,.95); --btn-bg: rgba(255,255,255,.2);
     --btn-hover: rgba(255,255,255,.6); --story-ring: #4a90e2;
-    --tg-accent: #3390ec; --tg-bg: #fff; --tg-hover: #f1f1f1; --tg-border: #e6e6e6;
-    --chat-wallpaper: radial-gradient(rgba(0,0,0,.08) 1px, transparent 1px);
-    --msg-selected: rgba(51,144,236,0.15);
   }
-  body.theme-dark {
-    --bg-body: radial-gradient(circle at 50% 30%,#1a1a1a 0%,#0a0a0a 100%);
-    --bg-window: rgba(30,30,30,.6); --bg-sidebar: rgba(40,40,40,.8);
-    --bg-chat: rgba(30,30,30,.9); --bg-messages: #1e1e1e; --bg-input: rgba(20,20,20,.8);
-    --text-main: #e0e0e0; --text-muted: #999; --border-light: rgba(100,100,100,.5);
-    --border-dark: rgba(0,0,0,.5);
-    --msg-them-bg: linear-gradient(180deg,#333 0%,#2a2a2a 100%); --msg-them-text: #e0e0e0;
-    --msg-me-bg: linear-gradient(180deg,#1c3e5a 0%,#0f2d45 100%); --msg-me-text: #b8e0ff;
-    --contact-hover: rgba(255,255,255,.1);
-    --contact-active: linear-gradient(180deg,rgba(30,60,90,.8) 0%,rgba(20,45,70,.8) 100%);
-    --popup-bg: rgba(40,40,40,.98); --btn-bg: rgba(255,255,255,.1);
-    --btn-hover: rgba(255,255,255,.3); --story-ring: #64b5f6;
-    --tg-accent: #64b5f6; --tg-bg: #212121; --tg-hover: #2c2c2c; --tg-border: #333;
-    --chat-wallpaper: radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px);
-    --msg-selected: rgba(100,181,246,0.2);
-  }
-  body.theme-xp {
-    --bg-body: linear-gradient(180deg, #235ad1 0%, #4a7fe8 100%);
-    --bg-window: #ECE9D8; --bg-sidebar: #ECE9D8;
-    --bg-chat: #ffffff; --bg-messages: #ffffff; --bg-input: #ECE9D8;
-    --text-main: #000000; --text-muted: #666666;
-    --border-light: #ffffff; --border-dark: #808080;
-    --msg-them-bg: #ffffff; --msg-them-text: #000000;
-    --msg-me-bg: #D9E7FF; --msg-me-text: #000000;
-    --contact-hover: #D4E0F7;
-    --contact-active: #316AC5;
-    --popup-bg: #ffffff; --btn-bg: #ECE9D8;
-    --btn-hover: #ffffff; --story-ring: #0058EE;
-    --tg-accent: #0058EE; --tg-bg: #ECE9D8; --tg-hover: #D4E0F7; --tg-border: #808080;
-    --chat-wallpaper: none;
-    --msg-selected: rgba(49,106,197,0.25);
-    font-family: Tahoma, 'MS Sans Serif', sans-serif;
-  }
-  body.theme-xp * { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
-  body.theme-xp .aero-window { background: #ECE9D8; border: 2px solid #0058EE; border-radius: 0; box-shadow: 3px 3px 0 rgba(0,0,0,.35); }
-  body.theme-xp .title-bar { background: linear-gradient(180deg,#0058EE 0%,#3A93FF 8%,#0058EE 40%,#0046C8 95%); border-bottom: none; border-radius: 0; padding: 4px 6px; }
-  body.theme-xp .title-bar-text { text-shadow: 1px 1px 1px #000; }
-  body.theme-xp .title-bar-controls button { border-radius: 3px; background: linear-gradient(180deg,#fff 0%,#ECE9D8 50%,#D4D0C8 100%); border: 1px solid #808080; color: #000; box-shadow: inset 0 1px 0 #fff, inset 0 -1px 0 #808080; }
-  body.theme-xp .title-bar-controls button.close-btn { background: linear-gradient(180deg,#FFA0A0 0%,#E85050 50%,#C02020 100%); border-color: #800000; color: #fff; }
-  body.theme-xp .main-area { padding: 6px; gap: 6px; }
-  body.theme-xp .sidebar, body.theme-xp .chat-area { background: #ECE9D8; border: 1px solid #808080; border-radius: 0; box-shadow: none; }
-  body.theme-xp .chat-header { background: linear-gradient(180deg,#ECE9D8,#D4D0C8); border-bottom: 1px solid #808080; border-radius: 0; }
-  body.theme-xp .chat-header::before { content: none; }
-  body.theme-xp .msg-bubble { border-radius: 0; box-shadow: none; border: 1px solid #808080; }
-  body.theme-xp .msg-them .msg-bubble { background: #fff; color: #000; }
-  body.theme-xp .msg-me .msg-bubble { background: #D9E7FF; color: #000; }
-  body.theme-xp .input-area { background: #ECE9D8; border-top: 1px solid #808080; border-radius: 0; }
-  body.theme-xp .input-row textarea, body.theme-xp .search-box input { background: #fff; border: 1px solid #808080; border-radius: 0; box-shadow: inset 1px 1px 2px rgba(0,0,0,.2); }
-  body.theme-xp .input-row textarea:focus, body.theme-xp .search-box input:focus { border-color: #0058EE; box-shadow: inset 1px 1px 2px rgba(0,0,0,.2); }
-  body.theme-xp .tool-btn, body.theme-xp .action-bar button, body.theme-xp .header-btn, body.theme-xp .cloud-btn, body.theme-xp .edit-btn { background: linear-gradient(180deg,#fff 0%,#ECE9D8 50%,#D4D0C8 100%); border: 1px solid #808080; border-radius: 3px; color: #000; box-shadow: inset 0 1px 0 #fff, inset 0 -1px 0 #808080; }
-  body.theme-xp .tool-btn:hover, body.theme-xp .action-bar button:hover, body.theme-xp .header-btn:hover, body.theme-xp .cloud-btn:hover { background: linear-gradient(180deg,#fff,#fff); }
-  body.theme-xp .contact { border-radius: 0; border: 1px solid transparent; }
-  body.theme-xp .contact:hover { background: #D4E0F7; border-color: #808080; }
-  body.theme-xp .contact.active { background: #316AC5; border-color: #1a3f8e; }
-  body.theme-xp .contact.active .contact-name, body.theme-xp .contact.active .contact-phone { color: #fff; }
-  body.theme-xp .my-profile { background: #D4D0C8; border-radius: 0; }
-  body.theme-xp .contact-avatar-container, body.theme-xp .my-avatar-container { border-radius: 0; border: 1px solid #808080; background: #fff; }
-  body.theme-xp .contact-avatar-container img, body.theme-xp .my-avatar-container img { border-radius: 0; }
-  body.theme-xp .modal-window { background: #ECE9D8; border: 2px solid #0058EE; border-radius: 0; box-shadow: 3px 3px 0 rgba(0,0,0,.35); }
-  body.theme-xp .modal-header { background: linear-gradient(180deg,#0058EE 0%,#3A93FF 8%,#0058EE 40%,#0046C8 95%); color: #fff; border-bottom: none; text-shadow: 1px 1px 1px #000; }
-  body.theme-xp .modal-footer { background: #D4D0C8; border-top: 1px solid #808080; }
-  body.theme-xp .modal-footer button, body.theme-xp .tg-btn { background: linear-gradient(180deg,#fff 0%,#ECE9D8 50%,#D4D0C8 100%); border: 1px solid #808080; border-radius: 3px; color: #000; box-shadow: inset 0 1px 0 #fff, inset 0 -1px 0 #808080; }
-  body.theme-xp .modal-footer button.primary { background: linear-gradient(180deg,#A0D0FF 0%,#4A90D0 50%,#2050A0 100%); color: #fff; border-color: #104080; }
-  body.theme-xp .settings-sidebar { background: #ECE9D8; border-right: 1px solid #808080; }
-  body.theme-xp .settings-tab.active { background: #316AC5; border-radius: 0; margin-right: 0; color: #fff; }
-  body.theme-xp .settings-main { background: #ECE9D8; }
-  body.theme-xp .tg-section { background: #fff; border: 1px solid #808080; border-radius: 0; box-shadow: none; }
-  body.theme-xp .tg-row { border-bottom: 1px solid #D4D0C8; }
-  body.theme-xp .tg-row:hover { background: #D4E0F7; }
-  body.theme-xp .tg-select { background: #fff; border: 1px solid #808080; border-radius: 0; }
-  body.theme-xp .status-menu, body.theme-xp .popup, body.theme-xp .attachment-menu, body.theme-xp .context-menu, body.theme-xp .emoji-picker { background: #fff; border: 1px solid #808080; border-radius: 0; box-shadow: 2px 2px 0 rgba(0,0,0,.35); }
-  body.theme-xp .popup::before { display: none; }
-  body.theme-xp .modal-overlay { background: rgba(0,0,0,.3); }
-  body.theme-xp .stories-bar { background: #ECE9D8; border-bottom: 1px solid #808080; }
-  body.theme-xp .gavel-btn svg { filter: none; }
-  body.theme-xp .reply-quote { border-left-color: #0058EE; }
-  body.theme-xp .msg-me .reply-quote { border-left-color: #0058EE; color: #000; }
-  body.theme-xp .file-attachment { background: #fff; border: 1px solid #808080; color: #0058EE; border-radius: 0; }
-  body.theme-xp .msg-me .file-attachment { background: #fff; }
-  body.theme-xp .poll-container { background: #fff; border: 1px solid #808080; border-radius: 0; }
-  body.theme-xp .poll-option-btn, body.theme-xp .poll-option-result { background: #fff; border: 1px solid #808080; border-radius: 0; }
-  body.theme-xp .poll-option-result.voted { border-color: #0058EE; color: #0058EE; }
-  body.theme-xp .msg-me .poll-container { background: #fff; }
-  body.theme-xp .status-option, body.theme-xp .form-group input, body.theme-xp .register-tab, body.theme-xp .signin-btn, body.theme-xp .gh-btn, body.theme-xp .gg-btn { border-radius: 0 !important; }
-
-  /* ===== ANIMATIONS ===== */
-  @keyframes modalPopIn { 0% { opacity: 0; transform: scale(0.85) translateY(25px); } 65% { opacity: 1; transform: scale(1.02) translateY(-3px); } 100% { opacity: 1; transform: scale(1) translateY(0); } }
-  @keyframes slideInRight { from { opacity: 0; transform: translateX(25px); } to { opacity: 1; transform: translateX(0); } }
-  @keyframes fadeInUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
-  @keyframes bounceIn { 0% { opacity: 0; transform: scale(0.4); } 50% { opacity: 1; transform: scale(1.06); } 70% { transform: scale(0.96); } 100% { transform: scale(1); } }
-  @keyframes slideDown { from { opacity: 0; transform: translateY(-12px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
-  @keyframes buttonPressAnim { 0% { transform: scale(1); } 45% { transform: scale(0.92); } 100% { transform: scale(1); } }
-  @keyframes contactIn { from { opacity: 0; transform: translateX(-12px); } to { opacity: 1; transform: translateX(0); } }
-  @keyframes callPulse { 0% { box-shadow: 0 0 0 0 rgba(76,217,100, 0.6); } 70% { box-shadow: 0 0 0 30px rgba(76,217,100, 0); } 100% { box-shadow: 0 0 0 0 rgba(76,217,100, 0); } }
-  @keyframes callRinging { 0% { transform: scale(1) rotate(0deg); } 10% { transform: scale(1.05) rotate(-5deg); } 20% { transform: scale(1.05) rotate(5deg); } 30% { transform: scale(1.05) rotate(-5deg); } 40% { transform: scale(1.05) rotate(5deg); } 50% { transform: scale(1) rotate(0deg); } 100% { transform: scale(1) rotate(0deg); } }
-
-  .modal-overlay.active .modal-window { animation: modalPopIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1); }
-  .settings-main.active { animation: slideInRight 0.28s ease-out; }
-  .popup.active { animation: slideDown 0.25s cubic-bezier(0.34, 1.56, 0.64, 1); }
-  .register-section.active { animation: fadeInUp 0.28s ease-out; }
-  .login-box { animation: bounceIn 0.55s cubic-bezier(0.34, 1.56, 0.64, 1); }
-  .contact { animation: contactIn 0.2s ease-out; }
-
-  button:active, .tool-btn:active, .header-btn:active, .edit-btn:active,
-  .tg-btn:active, .signin-btn:active, .gh-btn:active, .gg-btn:active,
-  .cloud-btn:active, .action-bar button:active, .contact:active,
-  .settings-tab:active, .status-option:active, .emoji-btn:active,
-  .attachment-menu-item:active, .context-menu-item:active,
-  .reaction-pill:active, .story-item:active .story-avatar { animation: buttonPressAnim 0.18s ease-out; }
-  .contact { transition: transform 0.1s, background 0.15s, border-color 0.15s; }
-  .story-item:hover .story-avatar { transform: scale(1.08); box-shadow: 0 4px 14px rgba(74,144,226,0.5); }
-  .story-avatar { transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s; }
-  .msg-bubble { transition: box-shadow 0.2s; }
-  .msg-bubble:hover { box-shadow: 0 3px 10px rgba(0,0,0,0.15); }
-  .tool-btn:hover { transform: scale(1.06) translateY(-1px); }
-  .header-btn:hover { transform: translateY(-1px); }
-  .action-bar button:hover { transform: translateY(-1px); }
-
   body {
     margin: 0; min-height: 100vh; background: var(--bg-body); background-attachment: fixed;
     display: flex; align-items: center; justify-content: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 13px;
-    color: var(--text-main); padding: 20px; overflow: hidden; transition: background .3s;
+    color: var(--text-main); padding: 20px; overflow: hidden;
   }
-  #hidden-file-input, #story-file-input, #media-input, #doc-input { display: none; }
   .aero-window {
     width: min(1000px,100%); height: min(700px,90vh); background: var(--bg-window);
-    backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-    border: 1px solid var(--border-light); border-radius: 8px;
-    box-shadow: 0 20px 50px rgba(0,0,0,.5), inset 0 0 0 1px var(--border-light);
-    display: flex; flex-direction: column; position: relative; overflow: hidden; transition: all .3s;
+    backdrop-filter: blur(15px); border: 1px solid var(--border-light); border-radius: 8px;
+    box-shadow: 0 20px 50px rgba(0,0,0,.5); display: flex; flex-direction: column; overflow: hidden;
   }
-  .aero-window.minimized { height: 40px; width: 300px; transform: translateY(calc(50vh - 20px)); }
-  .aero-window.minimized .main-area, .aero-window.minimized .title-bar-text span { display: none; }
-  .aero-window.maximized { width: 100vw; height: 100vh; border-radius: 0; padding: 0; }
   .aero-window.hidden { display: none; }
   .title-bar {
     background: linear-gradient(180deg,rgba(40,40,40,.85) 0%,rgba(20,20,20,.95) 100%);
     padding: 5px 10px; display: flex; align-items: center; justify-content: space-between;
-    color: #fff; font-size: 13px; text-shadow: 0 1px 2px rgba(0,0,0,.8);
-    border-bottom: 1px solid rgba(0,0,0,.5);
+    color: #fff; font-size: 13px; border-bottom: 1px solid rgba(0,0,0,.5);
   }
-  .title-bar-text { display: flex; align-items: center; gap: 8px; font-weight: 600; letter-spacing: .5px; }
-  .title-bar-controls { display: flex; gap: 2px; }
-  .title-bar-controls button {
-    width: 28px; height: 20px; background: rgba(255,255,255,.2);
-    border: 1px solid rgba(255,255,255,.3); border-radius: 3px; cursor: pointer;
-    font-size: 11px; font-weight: bold; color: #fff; display: flex; align-items: center; justify-content: center;
-    transition: background .15s;
-  }
-  .title-bar-controls button:hover { background: rgba(255,255,255,.4); }
-  .title-bar-controls button.close-btn { background: rgba(255,50,50,.4); border-color: rgba(255,100,100,.5); }
-  .title-bar-controls button.close-btn:hover { background: rgba(255,50,50,.7); }
+  .title-bar-controls button { width: 28px; height: 20px; background: rgba(255,255,255,.2); border: 1px solid rgba(255,255,255,.3); border-radius: 3px; cursor: pointer; color: #fff; }
+  
   .main-area { flex: 1; display: flex; padding: 10px; gap: 10px; overflow: hidden; }
   .sidebar {
     width: 300px; background: var(--bg-sidebar); border: 1px solid var(--border-light);
-    border-radius: 6px; box-shadow: 0 4px 15px rgba(0,0,0,.1), inset 0 1px 0 var(--border-light);
-    display: flex; flex-direction: column; flex-shrink: 0; position: relative; transition: background .3s;
+    border-radius: 6px; display: flex; flex-direction: column;
   }
-  .my-profile {
-    padding: 12px; border-bottom: 1px solid var(--border-dark);
-    display: flex; align-items: center; gap: 12px;
-    background: rgba(255,255,255,.2); border-radius: 6px 6px 0 0; position: relative;
-  }
-  .my-avatar-container {
-    width: 48px; height: 48px; border-radius: 50%; overflow: hidden;
-    border: 1px solid var(--border-light); box-shadow: 0 2px 5px rgba(0,0,0,.1);
-    display: flex; align-items: center; justify-content: center;
-    background: rgba(255,255,255,.6); font-size: 28px; flex-shrink: 0; position: relative;
-  }
-  .my-avatar-container img { width: 100%; height: 100%; object-fit: cover; }
-  .my-status-dot {
-    position: absolute; bottom: 0; right: 0; width: 16px; height: 16px; border-radius: 50%; border: 2.5px solid #fff;
-    box-shadow: 0 0 0 1px rgba(0,0,0,.15), 0 2px 4px rgba(0,0,0,.3);
-    cursor: pointer; transition: transform .2s, box-shadow .2s; z-index: 2;
-  }
-  .my-status-dot.online { background: #4cd964; }
-  .my-status-dot.away { background: #ffcc00; }
-  .my-status-dot.busy { background: #ff3b30; }
-  .my-status-dot:hover { transform: scale(1.15); }
-  .my-status-dot.menu-open { animation: glow-pulse 1.5s infinite alternate; transform: scale(1.25); z-index: 10; }
-  .my-status-dot.pop { animation: statusPop .5s ease-out; }
-  @keyframes statusPop { 0% { transform: scale(1); } 40% { transform: scale(1.7); } 100% { transform: scale(1); } }
-  @keyframes glow-pulse { 0% { box-shadow: 0 0 5px 2px rgba(255,255,255,.6), 0 1px 3px rgba(0,0,0,.3); } 100% { box-shadow: 0 0 15px 6px rgba(255,255,255,1), 0 1px 3px rgba(0,0,0,.3); } }
-  .status-dot { width: 10px; height: 10px; border-radius: 50%; border: 1px solid rgba(0,0,0,.2); display: inline-block; flex-shrink: 0; }
-  .status-dot.online { background: #4cd964; } .status-dot.away { background: #ffcc00; } .status-dot.busy { background: #ff3b30; }
-  .status-menu {
-    position: absolute; top: 45px; right: 10px; background: var(--popup-bg);
-    backdrop-filter: blur(10px); border: 1px solid var(--border-light); border-radius: 6px;
-    box-shadow: 0 4px 15px rgba(0,0,0,.2); padding: 5px; z-index: 160; display: none;
-    opacity: 0; transform: translateY(-5px); transition: opacity .2s, transform .2s; width: 140px;
-  }
-  .status-menu.active { display: block; opacity: 1; transform: translateY(0); animation: slideDown 0.2s ease-out; }
-  .status-menu div { padding: 6px 10px; display: flex; align-items: center; gap: 8px; font-size: 12px; cursor: pointer; border-radius: 4px; color: var(--text-main); transition: background .15s; }
-  .status-menu div:hover { background: rgba(0,120,215,.15); color: #4a90e2; }
-  .my-info { flex: 1; overflow: hidden; }
-  .my-status { font-weight: 700; color: var(--text-main); font-size: 14px; display: flex; align-items: center; gap: 8px; white-space: nowrap; }
-  .my-mood { font-size: 11px; color: var(--text-muted); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .cloud-btn {
-    background: var(--btn-bg); border: 1px solid var(--border-light); border-radius: 50%;
-    width: 26px; height: 26px; cursor: pointer; transition: all .2s;
-    box-shadow: 0 2px 5px rgba(0,0,0,.1); display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; padding: 0;
-  }
-  .cloud-btn:hover { background: var(--btn-hover); transform: scale(1.05); }
-  .cloud-btn svg { width: 18px; height: 18px; }
-  .action-bar { display: flex; gap: 5px; padding: 8px; border-bottom: 1px solid var(--border-dark); background: rgba(255,255,255,.1); }
-  .action-bar button {
-    flex: 1; background: var(--btn-bg); border: 1px solid var(--border-light);
-    border-radius: 4px; padding: 4px; cursor: pointer; font-size: 11px; font-weight: 600;
-    color: #4a90e2; transition: all .2s;
-  }
-  .action-bar button:hover { background: var(--btn-hover); box-shadow: 0 2px 5px rgba(0,0,0,.1); }
-  .search-box { padding: 8px; border-bottom: 1px solid var(--border-dark); }
-  .search-box input {
-    width: 100%; padding: 6px 12px; border: 1px solid var(--border-dark); border-radius: 15px;
-    background: var(--bg-sidebar); box-shadow: inset 0 2px 4px rgba(0,0,0,.05);
-    font-family: inherit; font-size: 12px; outline: none; color: var(--text-main);
-    transition: border-color .2s, box-shadow .2s;
-  }
-  .search-box input:focus { border-color: #4a90e2; background: var(--bg-messages); color: var(--text-main); box-shadow: 0 0 5px rgba(74,144,226,.4); }
+  .my-profile { padding: 12px; border-bottom: 1px solid var(--border-dark); display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,.2); }
+  .my-avatar-container { width: 48px; height: 48px; border-radius: 50%; background: #ccc; display: flex; align-items: center; justify-content: center; font-size: 24px; }
+  .my-info { flex: 1; }
+  .my-status { font-weight: 700; font-size: 14px; }
+  .my-mood { font-size: 11px; color: var(--text-muted); }
+  
+  .action-bar { display: flex; padding: 8px; border-bottom: 1px solid var(--border-dark); }
+  .action-bar button { flex: 1; background: var(--btn-bg); border: 1px solid var(--border-light); border-radius: 4px; padding: 6px; cursor: pointer; font-weight: 600; color: #4a90e2; }
+  
   .contact-list { flex: 1; overflow-y: auto; padding: 5px; }
-  .contact { display: flex; align-items: center; gap: 10px; padding: 8px 10px; cursor: pointer; border-radius: 6px; border: 1px solid transparent; margin-bottom: 2px; position: relative; }
-  .contact:hover { background: var(--contact-hover); border-color: var(--border-light); }
-  .contact.active { background: var(--contact-active); border-color: #4a90e2; box-shadow: inset 0 1px 0 var(--border-light); }
-  .contact-avatar-container {
-    width: 32px; height: 32px; border-radius: 50%; overflow: hidden;
-    border: 1px solid var(--border-dark); display: flex; align-items: center; justify-content: center;
-    background: rgba(255,255,255,.2); font-size: 18px; flex-shrink: 0; cursor: pointer;
-    transition: transform 0.2s;
-  }
-  .contact-avatar-container:hover { transform: scale(1.1); }
-  .contact-avatar-container img { width: 100%; height: 100%; object-fit: cover; }
+  .contact { display: flex; align-items: center; gap: 10px; padding: 8px 10px; cursor: pointer; border-radius: 6px; border: 1px solid transparent; margin-bottom: 2px; }
+  .contact:hover { background: var(--contact-hover); }
+  .contact.active { background: var(--contact-active); border-color: #4a90e2; }
+  .contact-avatar { width: 32px; height: 32px; border-radius: 50%; background: #aaa; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: bold; }
   .contact-info { flex: 1; overflow: hidden; }
-  .contact-name { font-weight: 600; font-size: 13px; color: var(--text-main); white-space: nowrap; text-overflow: ellipsis; overflow: hidden; display: flex; align-items: center; }
-  .contact-phone { font-size: 11px; color: #4a90e2; font-weight: 600; margin-top: 1px; }
-  .contact-actions { display: flex; align-items: center; gap: 2px; margin-left: auto; }
-  .edit-contact-btn, .delete-btn { font-size: 14px; cursor: pointer; padding: 4px; border-radius: 4px; opacity: .4; transition: opacity .2s, transform .2s, background .2s; flex-shrink: 0; }
-  .edit-contact-btn:hover, .delete-btn:hover { opacity: 1; transform: scale(1.15); background: var(--contact-hover); }
-  .contact-status { width: 10px; height: 10px; border-radius: 50%; border: 1px solid rgba(0,0,0,.2); flex-shrink: 0; box-shadow: inset 0 1px 2px rgba(255,255,255,.6); margin-left: 5px; }
-  .status-online { background: #4cd964; } .status-court { background: #ff3b30; } .status-away { background: #ffcc00; }
+  .contact-name { font-weight: 600; }
+  .contact-phone { font-size: 11px; color: #4a90e2; }
   
-  .unread-badge { background: #4a90e2; color: #fff; font-size: 10px; font-weight: bold; padding: 1px 6px; border-radius: 10px; margin-left: 5px; display: inline-block; }
-
-  .popup {
-    position: absolute; width: 280px; background: var(--popup-bg); backdrop-filter: blur(15px);
-    border: 1px solid var(--border-light); border-radius: 10px; box-shadow: 0 10px 25px rgba(0,0,0,.3);
-    padding: 15px; z-index: 150; display: none; opacity: 0; transform: translateY(-10px);
-    transition: opacity .2s, transform .2s; font-size: 12px;
-  }
-  .popup.active { display: block; opacity: 1; transform: translateY(0); }
-  .popup::before { content: ''; position: absolute; top: -8px; left: 25px; width: 14px; height: 14px; background: var(--popup-bg); border-left: 1px solid var(--border-light); border-top: 1px solid var(--border-light); transform: rotate(45deg); }
-  .popup h3 { margin: 0 0 10px 0; font-size: 14px; color: #4a90e2; border-bottom: 1px solid var(--border-dark); padding-bottom: 5px; display: flex; justify-content: space-between; align-items: center; }
-  .popup p { margin: 5px 0; color: var(--text-main); } .popup b { color: #4a90e2; }
-  .info-cloud-popup { top: 70px; left: 15px; }
-  .contact-profile-popup { top: 60px; right: 15px; width: 320px; }
-  .contact-profile-popup::before { left: auto; right: 30px; }
-  .edit-btn { background: rgba(74,144,226,.2); border: 1px solid rgba(74,144,226,.4); border-radius: 4px; padding: 3px 8px; font-size: 10px; cursor: pointer; color: #4a90e2; font-weight: bold; transition: all .2s; }
-  .edit-btn:hover { background: rgba(74,144,226,.4); color: #fff; }
-  .avatar-edit-area { display: flex; gap: 10px; align-items: center; background: rgba(0,0,0,.05); padding: 8px; border-radius: 6px; margin-bottom: 10px; }
-  .edit-input { width: 100%; padding: 4px; margin-bottom: 5px; border: 1px solid var(--border-dark); border-radius: 4px; font-family: inherit; font-size: 12px; background: var(--bg-sidebar); color: var(--text-main); }
-  .chat-area { flex: 1; background: var(--bg-chat); border: 1px solid var(--border-light); border-radius: 6px; box-shadow: 0 4px 15px rgba(0,0,0,.1); display: flex; flex-direction: column; position: relative; }
+  .chat-area { flex: 1; background: var(--bg-chat); border: 1px solid var(--border-light); border-radius: 6px; display: flex; flex-direction: column; }
+  .chat-header { background: var(--bg-window); border-bottom: 1px solid var(--border-dark); padding: 15px; font-weight: bold; font-size: 16px; }
   
-  .pinned-banner {
-    background: var(--bg-sidebar); border-bottom: 1px solid var(--border-dark);
-    padding: 8px 15px; display: none; align-items: center; justify-content: space-between;
-    font-size: 12px; cursor: pointer; border-left: 3px solid #4a90e2;
-    animation: slideDown 0.25s ease-out; z-index: 5;
-  }
-  .pinned-banner.active { display: flex; }
-  .pinned-content { flex: 1; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color: var(--text-main); }
-  .pinned-content b { color: #4a90e2; margin-right: 5px; }
-  .pinned-banner button { background: transparent; border: none; cursor: pointer; font-size: 14px; color: #888; padding: 0 5px; }
-  .pinned-banner button:hover { color: #e53935; }
-
-  .chat-header {
-    background: linear-gradient(180deg,var(--bg-window) 0%,rgba(230,240,250,.1) 100%);
-    border-bottom: 1px solid var(--border-dark); padding: 10px 15px;
-    display: flex; align-items: center; justify-content: space-between;
-    border-radius: 6px 6px 0 0; height: 55px; position: relative; z-index: 10;
-  }
-  .chat-header::before { content: "🎄"; position: absolute; right: 20px; top: -5px; font-size: 50px; opacity: .15; pointer-events: none; }
-  .chat-title { font-weight: 600; font-size: 16px; color: var(--text-main); z-index: 1; display: flex; align-items: center; gap: 10px; }
-  .chat-title span { font-size: 12px; color: var(--text-muted); font-weight: normal; margin-left: 5px; }
-  .header-btn { background: var(--btn-bg); border: 1px solid var(--border-light); border-radius: 4px; cursor: pointer; font-size: 12px; padding: 4px 8px; transition: all .2s; z-index: 1; color: var(--text-main); display: flex; align-items: center; justify-content: center; height: 28px; }
-  .header-btn:hover { background: var(--btn-hover); box-shadow: 0 1px 3px rgba(0,0,0,.1); }
-  .header-btn svg { width: 16px; height: 16px; stroke: currentColor; stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
-  .stories-bar { display: flex; gap: 12px; padding: 10px 15px; background: var(--bg-sidebar); border-bottom: 1px solid var(--border-dark); overflow-x: auto; overflow-y: hidden; white-space: nowrap; align-items: center; }
-  .stories-bar::-webkit-scrollbar { height: 0; }
-  .story-item { display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; width: 60px; flex-shrink: 0; }
-  .story-avatar { width: 48px; height: 48px; border-radius: 50%; background: #333; display: flex; align-items: center; justify-content: center; font-size: 24px; border: 2px solid var(--story-ring); position: relative; overflow: hidden; }
-  .story-avatar img { width: 100%; height: 100%; object-fit: cover; }
-  .story-name { font-size: 10px; color: var(--text-main); text-overflow: ellipsis; overflow: hidden; max-width: 100%; text-align: center; }
-  .my-story .story-avatar { border-color: #4cd964; background: var(--bg-messages); }
-  .my-story .story-avatar::after { content: '+'; position: absolute; bottom: -2px; right: -2px; background: #4cd964; color: #fff; width: 16px; height: 16px; border-radius: 50%; font-size: 14px; line-height: 14px; text-align: center; border: 2px solid var(--bg-sidebar); }
-  
-  .messages { flex: 1; overflow-y: auto; padding: 15px; display: flex; flex-direction: column; gap: 12px; transition: background .3s; }
-  .messages.chat-theme-default { background: var(--bg-messages); background-image: var(--chat-wallpaper); background-size: 20px 20px; }
-  .messages.chat-theme-telegram { background-color: #e6ebee; background-image: url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h10v10H0zM20 20h10v10H20z" fill="%23cdd6e0" opacity="0.4"/></svg>'); }
-  .messages.chat-theme-nature { background: linear-gradient(135deg, #d4f0d4 0%, #e8f5e9 100%); }
-  .messages.chat-theme-abstract { background: linear-gradient(45deg, #2b1b3d, #1a1a2e); }
-  .messages.chat-theme-plain { background: var(--bg-messages); }
-
-  .msg { display: flex; flex-direction: column; max-width: 80%; position: relative; }
+  .messages { flex: 1; overflow-y: auto; padding: 15px; display: flex; flex-direction: column; gap: 12px; background: #fff; }
+  .msg { display: flex; flex-direction: column; max-width: 80%; }
   .msg-them { align-self: flex-start; } .msg-me { align-self: flex-end; align-items: flex-end; }
-  .msg-meta { font-size: 11px; color: var(--text-muted); margin-bottom: 4px; padding: 0 4px; font-weight: 600; display: flex; align-items: center; gap: 4px; }
-  .msg-bubble { padding: 8px 14px; border-radius: 8px; font-size: 13px; line-height: 1.4; word-wrap: break-word; box-shadow: 0 2px 5px rgba(0,0,0,.1); position: relative; }
-  .msg-them .msg-bubble { background: var(--msg-them-bg); border: 1px solid var(--border-dark); color: var(--msg-them-text); border-bottom-left-radius: 0; }
-  .msg-me .msg-bubble { background: var(--msg-me-bg); border: 1px solid var(--border-dark); color: var(--msg-me-text); border-bottom-right-radius: 0; }
+  .msg-meta { font-size: 11px; color: var(--text-muted); margin-bottom: 4px; }
+  .msg-bubble { padding: 8px 14px; border-radius: 8px; font-size: 13px; line-height: 1.4; background: #eee; }
+  .msg-them .msg-bubble { background: #fff; border: 1px solid #ddd; border-bottom-left-radius: 0; }
+  .msg-me .msg-bubble { background: #e0f0ff; border: 1px solid #cce5ff; color: #003366; border-bottom-right-radius: 0; }
   
-  .read-status { font-size: 12px; margin-left: 4px; }
-  .read-status.read { color: #4cd964; }
-  .read-status.unread { color: #4a90e2; font-weight: bold; }
-
-  .msg-reactions { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; padding: 0 4px; }
-  .reaction-pill { background: var(--bg-sidebar); border: 1px solid var(--border-dark); border-radius: 12px; padding: 2px 8px; font-size: 12px; display: flex; align-items: center; gap: 4px; cursor: pointer; box-shadow: 0 1px 2px rgba(0,0,0,.1); transition: transform .1s; }
-  .reaction-pill:hover { transform: scale(1.1); }
-  .reaction-pill.mine { border-color: var(--tg-accent); background: rgba(74,144,226,.1); }
-  .reaction-count { font-size: 10px; font-weight: 600; color: var(--text-main); }
-
-  .msg.selected { background: var(--msg-selected); border-radius: 8px; }
-  .msg.selected .msg-bubble { border-color: var(--tg-accent); }
-  .msg-checkbox { position: absolute; left: -25px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; border-radius: 50%; border: 2px solid #ccc; display: none; align-items: center; justify-content: center; background: #fff; }
-  .msg.selected .msg-checkbox { display: flex; border-color: var(--tg-accent); background: var(--tg-accent); color: #fff; }
-  .msg-checkbox::after { content: '✓'; font-size: 12px; color: #fff; }
-  .msg-me .msg-checkbox { left: auto; right: -25px; }
-
-  .reply-quote { border-left: 3px solid #4a90e2; padding-left: 8px; margin-bottom: 4px; font-size: 11px; color: #555; cursor: pointer; }
-  .msg-me .reply-quote { border-left-color: #fff; color: #003366; opacity: 0.8; }
-  .reply-quote b { display: block; margin-bottom: 1px; }
-
-  .msg-bubble img, .msg-bubble video { max-width: 100%; max-height: 240px; border-radius: 6px; display: block; }
-  .msg-bubble audio { width: 100%; max-width: 260px; margin-top: 4px; }
-  .file-attachment { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; background: rgba(255,255,255,.5); border-radius: 6px; color: #004080; text-decoration: none; font-size: 12px; font-weight: 600; border: 1px solid rgba(0,0,0,.1); }
-  .msg-me .file-attachment { background: rgba(255,255,255,.7); }
-
-  .location-attachment { display: flex; flex-direction: column; gap: 8px; background: rgba(255,255,255,0.6); padding: 10px; border-radius: 8px; border: 1px solid var(--border-dark); align-items: center; text-decoration: none; color: var(--text-main); transition: background 0.2s; }
-  .location-attachment:hover { background: rgba(255,255,255,0.9); }
-  .location-icon { width: 48px; height: 48px; }
-  .location-text { font-weight: 600; font-size: 12px; color: #4a90e2; }
-
-  .poll-container { background: var(--bg-messages); border: 1px solid var(--border-dark); border-radius: 8px; padding: 12px; min-width: 260px; max-width: 320px; color: var(--text-main); box-shadow: 0 2px 6px rgba(0,0,0,.08); }
-  .msg-me .poll-container { background: #fff; }
-  .poll-question { font-weight: 700; font-size: 14px; margin-bottom: 10px; line-height: 1.3; }
-  .poll-options { display: flex; flex-direction: column; gap: 6px; }
-  .poll-option-btn { background: var(--bg-sidebar); border: 1px solid var(--border-light); border-radius: 6px; padding: 8px 12px; font-size: 13px; cursor: pointer; transition: all .2s; text-align: left; }
-  .poll-option-btn:hover { background: var(--btn-hover); }
-  .poll-option-result { position: relative; background: var(--bg-sidebar); border: 1px solid var(--border-light); border-radius: 6px; padding: 8px 12px; font-size: 13px; overflow: hidden; display: flex; justify-content: space-between; align-items: center; color: #555; cursor: pointer; }
-  .poll-option-result:hover { background: rgba(0,0,0,0.05); }
-  .poll-option-result.voted { border-color: #4a90e2; color: #004080; font-weight: 600; }
-  .poll-option-result.voted::before { content: '✓ '; color: #4a90e2; }
-  .poll-option-bar { position: absolute; left: 0; top: 0; bottom: 0; background: rgba(74,144,226,.15); z-index: 0; transition: width 0.4s ease; }
-  .poll-option-result.voted .poll-option-bar { background: rgba(74,144,226,.25); }
-  .poll-option-text { position: relative; z-index: 1; }
-  .poll-option-percent { position: relative; z-index: 1; font-weight: 700; font-size: 12px; }
-  .poll-footer { margin-top: 10px; font-size: 11px; color: var(--text-muted); text-align: center; }
-
-  .input-area { padding: 10px; background: var(--bg-input); border-top: 1px solid var(--border-dark); border-radius: 0 0 6px 6px; display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; position: relative; }
-  .reply-banner { display: none; padding: 6px 10px; background: var(--bg-sidebar); border: 1px solid var(--border-dark); border-left: 4px solid #4a90e2; border-radius: 6px; align-items: center; justify-content: space-between; margin-bottom: 4px; }
-  .reply-banner.active { display: flex; animation: fadeInUp 0.2s ease-out; }
-  .reply-banner-content { flex: 1; overflow: hidden; font-size: 12px; }
-  .reply-banner-content b { color: #4a90e2; display: block; }
-  .reply-banner-content span { color: var(--text-muted); font-style: italic; }
-  .reply-banner button { background: transparent; border: none; cursor: pointer; font-size: 16px; color: #999; padding: 0 5px; }
-
-  .recording-banner { display: none; padding: 8px 12px; background: linear-gradient(180deg, #ff4444, #cc0000); color: white; font-size: 12px; font-weight: 600; align-items: center; justify-content: space-between; border-radius: 6px; box-shadow: 0 2px 8px rgba(255,50,50,.3); margin-bottom: 8px; }
-  .recording-banner.active { display: flex; animation: recordPulse 1.5s infinite; }
-  @keyframes recordPulse { 0%, 100% { box-shadow: 0 2px 8px rgba(255,50,50,.3); } 50% { box-shadow: 0 2px 16px rgba(255,50,50,.6); } }
-  .recording-banner .rec-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #fff; animation: blink 1s infinite; margin-right: 8px; }
-  @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: .3; } }
-
-  .input-row { display: flex; gap: 6px; align-items: center; }
-  .input-row textarea { flex: 1; height: 58px; resize: none; border: 1px solid var(--border-dark); border-radius: 4px; padding: 8px; font-family: inherit; font-size: 13px; outline: none; box-shadow: inset 0 1px 3px rgba(0,0,0,.05); background: var(--bg-sidebar); color: var(--text-main); transition: border-color .2s, box-shadow .2s, background .2s; }
-  .input-row textarea:focus { border-color: #4a90e2; background: var(--bg-messages); box-shadow: 0 0 8px rgba(74,144,226,.3); }
+  .input-area { padding: 10px; background: var(--bg-input); border-top: 1px solid var(--border-dark); display: flex; gap: 6px; }
+  .input-area textarea { flex: 1; height: 50px; resize: none; border: 1px solid var(--border-dark); border-radius: 4px; padding: 8px; font-family: inherit; }
+  .gavel-btn { width: 50px; background: #4a90e2; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 20px; }
   
-  .gavel-btn { width: 58px; height: 58px; background: transparent; border: none; cursor: pointer; transition: all .1s; display: flex; align-items: center; justify-content: center; padding: 0; flex-shrink: 0; position: relative; outline: none; }
-  .gavel-btn svg { width: 48px; height: 48px; filter: drop-shadow(0 4px 6px rgba(0,0,0,.4)); transform-origin: 50% 80%; transition: transform .15s; }
-  .gavel-btn:hover svg { transform: scale(1.05) rotate(-5deg); } .gavel-btn:active svg { transform: scale(.95) rotate(0deg); }
-  
-  .tool-btn { background: var(--btn-bg); border: 1px solid var(--border-light); border-radius: 6px; width: 46px; height: 58px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all .2s; flex-shrink: 0; padding: 0; }
-  .tool-btn:hover { background: var(--btn-hover); }
-  .tool-btn svg { width: 24px; height: 24px; }
-  
-  .tool-btn.recording { background: #ffcccc; animation: pulse-red 1s infinite; }
-  @keyframes pulse-red { 0% { box-shadow: 0 0 0 0 rgba(255,0,0,0.4); } 70% { box-shadow: 0 0 0 10px rgba(255,0,0,0); } 100% { box-shadow: 0 0 0 0 rgba(255,0,0,0); } }
-
-  #gavel { transform-origin: 55px 45px; transform: rotate(-35deg); }
-  #gavel.hitting { animation: gavelSwing 0.45s ease-out; }
-  @keyframes gavelSwing { 0% { transform: rotate(-35deg); } 30% { transform: rotate(-5deg); } 50% { transform: rotate(-25deg); } 70% { transform: rotate(-15deg); } 100% { transform: rotate(-35deg); } }
-  #board { transform-origin: center; }
-  #board.hit { animation: boardShake 0.3s ease-out; }
-  @keyframes boardShake { 0% { transform: translate(0, 0); } 20% { transform: translate(2px, -1px); } 40% { transform: translate(-2px, 1px); } 60% { transform: translate(1px, -1px); } 80% { transform: translate(-1px, 1px); } 100% { transform: translate(0, 0); } }
-
-  .attachment-menu { position: absolute; bottom: calc(100% + 8px); right: 80px; background: var(--bg-messages); border: 1px solid var(--border-dark); border-radius: 10px; box-shadow: 0 8px 25px rgba(0,0,0,.25); padding: 6px; z-index: 150; display: none; flex-direction: column; min-width: 220px; animation: menuSlideUp 0.18s ease-out; }
-  .attachment-menu.active { display: flex; }
-  .attachment-menu-item { padding: 10px 14px; cursor: pointer; border-radius: 6px; font-size: 13px; display: flex; align-items: center; gap: 12px; color: var(--text-main); transition: background .15s; }
-  .attachment-menu-item:hover { background: var(--tg-hover); }
-  .attachment-menu-item .icon { font-size: 18px; width: 22px; text-align: center; display: flex; align-items: center; justify-content: center; }
-  .attachment-menu-item .icon svg { width: 20px; height: 20px; stroke: currentColor; stroke-width: 2.5; fill: none; }
-  @keyframes menuSlideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-  .emoji-picker { position: absolute; bottom: calc(100% + 8px); right: 140px; background: var(--bg-messages); border: 1px solid var(--border-dark); border-radius: 10px; box-shadow: 0 8px 25px rgba(0,0,0,.25); padding: 10px; z-index: 150; display: none; grid-template-columns: repeat(6, 1fr); gap: 6px; animation: menuSlideUp 0.18s ease-out; }
-  .emoji-picker.active { display: grid; }
-  .emoji-btn { font-size: 20px; cursor: pointer; padding: 4px; border-radius: 6px; text-align: center; transition: background .15s, transform .1s; }
-  .emoji-btn:hover { background: var(--tg-hover); transform: scale(1.15); }
-
-  .context-menu { position: fixed; background: var(--bg-messages); border: 1px solid var(--border-dark); border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,.3); padding: 6px; z-index: 1000; display: none; flex-direction: column; min-width: 180px; }
-  .context-menu.active { display: flex; animation: slideDown 0.15s ease-out; }
-  .context-menu-item { padding: 8px 12px; cursor: pointer; border-radius: 6px; font-size: 13px; display: flex; align-items: center; gap: 10px; color: var(--text-main); transition: background .15s; }
-  .context-menu-item:hover { background: var(--tg-hover); }
-  .context-menu-item.danger { color: #e53935; }
-  .context-menu-item .icon { width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; }
-  .context-menu-item .icon svg { width: 18px; height: 18px; }
-
-  .reaction-picker-row { display: flex; gap: 5px; padding: 4px 8px; border-bottom: 1px solid var(--border-dark); margin-bottom: 4px; }
-  .reaction-picker-row span { font-size: 18px; cursor: pointer; transition: transform .1s; }
-  .reaction-picker-row span:hover { transform: scale(1.3); }
-
-  .select-toolbar { position: absolute; top: 55px; left: 0; width: 100%; background: var(--bg-messages); border-bottom: 1px solid var(--border-dark); padding: 8px 15px; display: none; align-items: center; justify-content: space-between; z-index: 9; box-shadow: 0 2px 10px rgba(0,0,0,.1); }
-  .select-toolbar.active { display: flex; animation: slideDown 0.2s ease-out; }
-  .select-toolbar button { background: transparent; border: none; cursor: pointer; font-size: 13px; font-weight: 600; color: #4a90e2; display: flex; align-items: center; gap: 5px; }
-
-  .modal-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,.5); backdrop-filter: blur(5px); z-index: 200; display: none; align-items: center; justify-content: center; }
-  .modal-overlay.active { display: flex; }
-  .modal-window { background: var(--bg-chat); backdrop-filter: blur(25px); border: 1px solid var(--border-light); border-radius: 8px; width: 380px; box-shadow: 0 25px 50px rgba(0,0,0,.6), inset 0 0 0 1px var(--border-light); overflow: hidden; color: var(--text-main); display: flex; flex-direction: column; }
-  .modal-window.settings-window { width: 720px; height: 520px; }
-  .modal-header { background: linear-gradient(180deg,var(--bg-sidebar) 0%,rgba(200,220,240,.1) 100%); color: var(--text-main); padding: 10px 15px; font-weight: bold; font-size: 14px; border-bottom: 1px solid var(--border-dark); display: flex; justify-content: space-between; align-items: center; }
-  .settings-layout { display: flex; flex: 1; overflow: hidden; }
-  .settings-sidebar { width: 220px; background: var(--tg-bg); border-right: 1px solid var(--tg-border); display: flex; flex-direction: column; padding: 10px 0; overflow-y: auto; }
-  .settings-tab { padding: 12px 20px; cursor: pointer; font-size: 14px; font-weight: 500; color: var(--text-main); transition: background .2s, color .2s, transform .1s; display: flex; align-items: center; gap: 12px; }
-  .settings-tab:hover { background: var(--tg-hover); }
-  .settings-tab.active { background: var(--tg-accent); color: #fff; border-radius: 0 20px 20px 0; margin-right: 10px; }
-  .settings-tab .tab-icon { font-size: 16px; }
-  .settings-main { flex: 1; padding: 20px; overflow-y: auto; display: none; flex-direction: column; gap: 20px; background: var(--bg-chat); }
-  .settings-main.active { display: flex; }
-  .tg-section { display: flex; flex-direction: column; background: var(--bg-messages); border-radius: 10px; border: 1px solid var(--border-dark); overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,.04); }
-  .tg-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; border-bottom: 1px solid var(--border-dark); cursor: pointer; transition: background .15s; }
-  .tg-row:last-child { border-bottom: none; } .tg-row:hover { background: var(--tg-hover); }
-  .tg-row-info { display: flex; flex-direction: column; gap: 3px; }
-  .tg-row-title { font-size: 14px; font-weight: 600; color: var(--text-main); }
-  .tg-row-desc { font-size: 12px; color: var(--text-muted); }
-  .tg-row-value { font-size: 13px; color: var(--tg-accent); font-weight: 500; }
-  .tg-select { padding: 6px 10px; border: 1px solid var(--border-dark); border-radius: 6px; background: var(--bg-sidebar); color: var(--text-main); font-family: inherit; font-size: 13px; outline: none; cursor: pointer; }
-  .tg-select:focus { border-color: var(--tg-accent); }
-  .toggle-switch { position: relative; width: 40px; height: 22px; flex-shrink: 0; cursor: pointer; }
-  .toggle-switch input { display: none; }
-  .toggle-switch .toggle-slider { position: absolute; inset: 0; background: #ccc; border-radius: 22px; transition: .3s; }
-  .toggle-switch .toggle-slider::before { content: ''; position: absolute; top: 2px; left: 2px; width: 18px; height: 18px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.3); transition: .3s; }
-  .toggle-switch input:checked + .toggle-slider { background: var(--tg-accent); }
-  .toggle-switch input:checked + .toggle-slider::before { transform: translateX(18px); }
-  .tg-btn { background: var(--tg-accent); color: #fff; border: none; padding: 8px 16px; border-radius: 6px; font-weight: 600; font-size: 13px; cursor: pointer; transition: opacity .2s, transform .1s; }
-  .tg-btn:hover { opacity: .85; } .tg-btn.danger { background: #e53935; }
-  .modal-footer { padding: 10px 15px; background: rgba(0,0,0,.05); display: flex; justify-content: flex-end; gap: 8px; border-top: 1px solid var(--border-dark); }
-  .modal-footer button { padding: 5px 15px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 12px; border: 1px solid var(--border-dark); background: var(--bg-sidebar); color: var(--text-main); transition: filter .15s, transform .1s; }
-  .modal-footer button:hover { filter: brightness(.9); }
-  .modal-footer button.primary { background: linear-gradient(180deg,#a0d8ff,#3a8ecc); border-color: #104a80; color: #fff; }
-  .modal-footer button.primary:hover { filter: brightness(1.1); }
-  .modal-body { padding: 15px; display: flex; flex-direction: column; gap: 12px; }
-  .modal-body label { font-size: 12px; font-weight: bold; color: var(--text-main); display: flex; align-items: center; gap: 8px; }
-  .modal-body input[type="text"], .modal-body input[type="email"], .modal-body input[type="password"] { width: 100%; padding: 6px; border: 1px solid var(--border-dark); border-radius: 4px; font-family: inherit; font-size: 12px; background: var(--bg-messages); color: var(--text-main); transition: border-color .2s, box-shadow .2s; }
-  .modal-body input:focus { outline: none; border-color: #4a90e2; box-shadow: 0 0 5px rgba(74,144,226,.3); }
-  .checkbox-list { max-height: 120px; overflow-y: auto; border: 1px solid var(--border-dark); border-radius: 4px; padding: 5px; background: var(--bg-messages); }
-  .checkbox-list label { display: flex; align-items: center; gap: 6px; font-weight: normal; padding: 3px; cursor: pointer; }
-
-  .poll-option-row { display: flex; gap: 5px; align-items: center; margin-bottom: 5px; }
-  .poll-option-input { flex: 1; padding: 6px; border: 1px solid var(--border-dark); border-radius: 4px; font-size: 12px; background: var(--bg-messages); color: var(--text-main); }
-  .poll-remove-btn { background: rgba(255,0,0,.1); border: 1px solid rgba(255,0,0,.3); color: #c00; border-radius: 4px; width: 28px; height: 28px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; transition: background .15s; }
-  .poll-remove-btn:hover { background: rgba(255,0,0,.2); }
-
-  .member-row { display: flex; align-items: center; justify-content: space-between; padding: 8px; border-bottom: 1px solid var(--border-dark); font-size: 12px; }
-  .member-row:last-child { border-bottom: none; }
-  .member-row .actions { display: flex; gap: 5px; }
-  .member-row .actions button { background: var(--bg-sidebar); border: 1px solid var(--border-dark); border-radius: 4px; padding: 2px 6px; font-size: 10px; cursor: pointer; color: var(--text-main); transition: background .15s; }
-  .member-row .actions button:hover { background: var(--btn-hover); }
-
-  .call-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg,#4a7cb1 0%,#a7a6b5 50%,#e3d1cd 100%); z-index: 500; display: none; flex-direction: column; opacity: 0; transition: opacity .3s; font-family: 'Segoe UI', Tahoma, sans-serif; }
-  .call-overlay.active { display: flex; opacity: 1; }
-  .call-top-bar { display: flex; justify-content: space-between; align-items: flex-start; padding: 20px 30px; color: #fff; }
-  .call-user-info h2 { margin: 0; font-size: 24px; font-weight: 600; }
-  .call-user-info p { margin: 4px 0 0; font-size: 13px; opacity: .8; font-weight: 300; }
-  .call-top-actions { display: flex; align-items: center; gap: 15px; }
-  .call-top-avatar { width: 50px; height: 50px; border-radius: 50%; background: #e0e0e0; display: flex; align-items: center; justify-content: center; font-size: 24px; overflow: hidden; border: 2px solid rgba(255,255,255,.5); }
-  .call-top-avatar img { width: 100%; height: 100%; object-fit: cover; }
-  .call-center { flex: 1; display: flex; justify-content: center; align-items: center; position: relative; }
-  
-  .call-center-avatar { width: 180px; height: 180px; border-radius: 50%; background: #dcdcdc; display: flex; align-items: center; justify-content: center; font-size: 60px; color: #4a7cb1; font-weight: 600; box-shadow: 0 10px 30px rgba(0,0,0,.15); overflow: hidden; transition: all 0.3s; }
-  .call-center-avatar img { width: 100%; height: 100%; object-fit: cover; }
-  .call-overlay.ringing .call-center-avatar { animation: callRinging 1.5s infinite; }
-  .call-overlay.connected .call-center-avatar { animation: callPulse 2s infinite; }
-
-  .call-self-video { position: absolute; top: 20px; right: 20px; width: 160px; height: 120px; border-radius: 8px; overflow: hidden; background: #222; box-shadow: 0 4px 15px rgba(0,0,0,.3); display: none; z-index: 10; }
-  .call-self-video video { width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1); }
-  
-  .call-screen-share { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; height: 80%; background: #000; border-radius: 12px; overflow: hidden; display: none; z-index: 5; box-shadow: 0 10px 40px rgba(0,0,0,0.5); border: 2px solid rgba(255,255,255,0.2); }
-  .call-screen-share video { width: 100%; height: 100%; object-fit: contain; }
-  
-  .call-bottom-bar { padding: 30px; display: flex; justify-content: center; align-items: center; position: relative; }
-  .call-controls { display: flex; gap: 20px; }
-  .call-control-btn { width: 60px; height: 60px; border-radius: 50%; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 24px; transition: all .2s; }
-  .call-control-btn.white { background: #fff; color: #333; box-shadow: 0 4px 10px rgba(0,0,0,.1); }
-  .call-control-btn.white:hover { transform: scale(1.05); background: #f0f0f0; }
-  .call-control-btn.black { background: #2b2b2b; color: #fff; box-shadow: 0 4px 10px rgba(0,0,0,.2); }
-  .call-control-btn.black:hover { transform: scale(1.05); background: #1a1a1a; }
-  .call-control-btn.red { background: #e85b5b; color: #fff; box-shadow: 0 4px 10px rgba(232,91,91,.4); }
-  .call-control-btn.red:hover { transform: scale(1.05); background: #d14a4a; }
-  .record-indicator { position: absolute; top: 20px; left: 50%; transform: translateX(-50%); background: rgba(255,0,0,.8); color: #fff; padding: 5px 15px; border-radius: 20px; font-size: 12px; font-weight: bold; display: none; align-items: center; gap: 8px; }
-  .record-indicator.active { display: flex; }
-  .record-dot { width: 10px; height: 10px; background: #fff; border-radius: 50%; animation: blink 1s infinite; }
-
-  .story-viewer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 600; display: none; flex-direction: column; align-items: center; justify-content: center; }
-  .story-viewer.active { display: flex; animation: fadeInUp 0.25s ease-out; }
-  .story-viewer-content { width: 300px; height: 500px; background: #333; border-radius: 12px; display: flex; align-items: center; justify-content: center; padding: 20px; color: #fff; font-size: 20px; text-align: center; box-shadow: 0 0 50px rgba(255,255,255,.1); position: relative; overflow: hidden; flex-direction: column; gap: 12px; }
-  .story-viewer-header { position: absolute; top: 10px; left: 10px; right: 10px; display: flex; align-items: center; gap: 10px; color: #fff; z-index: 2; }
-  .story-viewer-avatar { width: 32px; height: 32px; border-radius: 50%; background: #555; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-  .story-viewer-avatar img { width: 100%; height: 100%; object-fit: cover; }
-  .story-viewer-close { position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,.5); border: none; color: #fff; font-size: 20px; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; z-index: 2; transition: background .15s; }
-  .story-viewer-close:hover { background: rgba(255,0,0,.6); }
-
-  .login-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: linear-gradient(180deg,#d9eefc 0%,#b5dcf5 25%,#7fc1ea 60%,#4a9bd1 100%); display: flex; align-items: center; justify-content: center; z-index: 10000; font-family: 'Segoe UI', Tahoma, sans-serif; }
+  .login-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: linear-gradient(180deg,#d9eefc 0%,#b5dcf5 100%); display: flex; align-items: center; justify-content: center; z-index: 10000; }
   .login-overlay.hidden { display: none; }
-  .login-box { width: 380px; background: #fff; border-radius: 10px; box-shadow: 0 15px 50px rgba(0,40,80,.4), 0 0 0 1px rgba(0,0,0,.08); overflow: hidden; }
-  .login-header { background: linear-gradient(180deg,#f0f9ff 0%,#d9eefc 100%); padding: 22px 20px 18px; text-align: center; border-bottom: 1px solid #b8d8ec; }
-  .logo { font-size: 40px; font-weight: 700; color: #00aff0; letter-spacing: -1.5px; line-height: 1; text-shadow: 0 1px 2px rgba(0,0,0,.08); display: inline-flex; align-items: center; gap: 8px; }
-  .logo-icon { display: flex; align-items: center; justify-content: center; }
-  .logo-icon svg { width: 40px; height: 28px; }
-  .logo sup { font-size: 11px; vertical-align: super; font-weight: 400; }
-  .tagline { font-size: 11px; color: #6a8899; margin-top: 6px; }
-  .login-body { padding: 20px 26px 24px; }
+  .login-box { width: 380px; background: #fff; border-radius: 10px; box-shadow: 0 15px 50px rgba(0,0,0,.3); padding: 20px; }
   .form-group { margin-bottom: 12px; }
-  .form-group label { display: block; font-size: 12px; font-weight: 600; color: #4a4a4a; margin-bottom: 5px; }
-  .form-group input[type="text"], .form-group input[type="password"], .form-group input[type="email"] { width: 100%; padding: 9px 11px; border: 1px solid #c8d8e8; border-radius: 4px; font-size: 13px; font-family: inherit; outline: none; color: #1a1a1a; background: #fafcfe; transition: border-color .2s, box-shadow .2s, background .2s, border-bottom .2s; }
-  .form-group input:focus { border-color: #00aff0; background: #fff; box-shadow: 0 0 0 3px rgba(0,175,240,.15); }
-  .form-group input.input-error { border-bottom: 2px solid #e53935 !important; background: #fff5f5; }
-  .form-group input.input-error:focus { box-shadow: 0 0 0 3px rgba(229,57,53,.15); border-color: #e53935; }
-  .status-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
-  .status-row > label { font-size: 12px; font-weight: 600; color: #4a4a4a; white-space: nowrap; }
-  .status-options { display: flex; gap: 4px; flex: 1; }
-  .status-option { flex: 1; padding: 6px 6px; border: 1px solid #c8d8e8; border-radius: 4px; cursor: pointer; font-size: 11px; text-align: center; display: flex; align-items: center; justify-content: center; gap: 5px; transition: all .2s; background: #f6fafd; color: #4a4a4a; }
-  .status-option:hover { background: #e8f4fc; border-color: #9cc8e0; }
-  .status-option.active { background: #00aff0; border-color: #0090d0; color: #fff; font-weight: 600; box-shadow: 0 1px 3px rgba(0,160,224,.35); }
-  .status-option.active .status-dot { border-color: #fff; }
-  .remember-row { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #4a4a4a; margin-bottom: 16px; cursor: pointer; }
-  .remember-row input { margin: 0; cursor: pointer; }
-  .signin-btn { width: 100%; padding: 11px; border: 1px solid #0090d0; border-radius: 4px; background: linear-gradient(180deg,#00c0ff 0%,#00a0e0 100%); color: #fff; font-size: 14px; font-weight: 600; cursor: pointer; transition: all .2s; box-shadow: 0 2px 5px rgba(0,160,224,.35); font-family: inherit; }
-  .signin-btn:hover { background: linear-gradient(180deg,#00d0ff 0%,#00b0f0 100%); }
-  .signin-btn:active { transform: translateY(1px); box-shadow: 0 1px 2px rgba(0,160,224,.35); }
-  .footer-links { text-align: center; font-size: 11px; margin-top: 14px; color: #8a9aa5; }
-  .footer-links a { color: #00aff0; text-decoration: none; cursor: pointer; }
-  .footer-links a:hover { text-decoration: underline; }
-  .login-error { background: #fff0f0; border: 1px solid #ffb0b0; color: #c00; padding: 6px 10px; border-radius: 4px; font-size: 11px; margin-bottom: 10px; display: none; }
-  .login-error.show { display: block; animation: fadeInUp 0.2s ease-out; }
-
-  .gh-btn, .gg-btn { width: 100%; padding: 10px; border: 1px solid #333; border-radius: 4px; background: #24292e; color: #fff; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background .2s, transform .1s; margin-top: 10px; }
-  .gh-btn:hover { background: #1a1e22; }
-  .gh-btn svg { width: 20px; height: 20px; fill: #fff; }
-  .gg-btn { background: #fff; color: #333; border-color: #ccc; }
-  .gg-btn:hover { background: #f5f5f5; }
-  .gg-btn svg { width: 20px; height: 20px; }
-
-  .register-tabs { display: flex; border-bottom: 1px solid #e0e0e0; margin-bottom: 15px; }
-  .register-tab { flex: 1; text-align: center; padding: 10px; cursor: pointer; font-weight: bold; font-size: 12px; color: #888; border-bottom: 2px solid transparent; transition: color .2s, border-color .2s, background .15s; }
-  .register-tab:hover { background: #f5f9fc; }
-  .register-tab.active { color: #00aff0; border-bottom-color: #00aff0; }
-  .register-section { display: none; flex-direction: column; gap: 10px; }
-  .register-section.active { display: flex; }
-  .register-section input { width: 100%; padding: 9px 11px; border: 1px solid #c8d8e8; border-radius: 4px; font-size: 13px; font-family: inherit; outline: none; color: #1a1a1a; background: #fafcfe; transition: border-color .2s, box-shadow .2s; }
-  .register-section input:focus { border-color: #00aff0; background: #fff; box-shadow: 0 0 0 3px rgba(0,175,240,.15); }
-  .register-section label { font-size: 12px; font-weight: 600; color: #4a4a4a; }
-  .db-hint { font-size: 10px; color: #8a9aa5; margin-top: 8px; padding: 6px; background: #f5f9fc; border-radius: 4px; line-height: 1.4; }
-
-  ::-webkit-scrollbar { width: 12px; }
-  ::-webkit-scrollbar-track { background: rgba(240,240,240,.1); border-radius: 6px; }
-  ::-webkit-scrollbar-thumb { background: rgba(150,150,150,.5); border-radius: 6px; border: 2px solid transparent; background-clip: padding-box; }
-  ::-webkit-scrollbar-thumb:hover { background: rgba(100,100,100,.7); background-clip: padding-box; border: 2px solid transparent; }
+  .form-group label { display: block; font-size: 12px; font-weight: bold; margin-bottom: 5px; }
+  .form-group input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; }
+  .signin-btn { width: 100%; padding: 10px; background: #00aff0; color: #fff; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 14px; }
+  .login-error { color: red; font-size: 12px; margin-bottom: 10px; display: none; }
+  
+  .modal-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,.5); z-index: 200; display: none; align-items: center; justify-content: center; }
+  .modal-overlay.active { display: flex; }
+  .modal-window { background: #fff; border-radius: 8px; width: 350px; padding: 20px; }
+  .modal-body { margin-bottom: 15px; }
+  .modal-footer { display: flex; justify-content: flex-end; gap: 10px; }
+  .modal-footer button { padding: 8px 15px; border-radius: 4px; cursor: pointer; border: none; }
+  .modal-footer .primary { background: #4a90e2; color: #fff; }
 </style>
-<!-- Подключение Supabase -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
-<input type="file" id="hidden-file-input" accept="image/*">
-<input type="file" id="story-file-input" accept="image/*">
-<input type="file" id="media-input" accept="image/*,video/*" style="display:none">
-<input type="file" id="doc-input" accept="*" style="display:none">
-
 <div class="login-overlay" id="login-overlay">
   <div class="login-box">
-    <div class="login-header">
-      <div class="logo">
-        <span class="logo-icon">
-          <svg viewBox="0 0 100 70" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="cloud-grad-logo" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#ffffff" /><stop offset="60%" stop-color="#d4eaff" /><stop offset="100%" stop-color="#8bb9fb" />
-              </linearGradient>
-            </defs>
-            <ellipse cx="50" cy="65" rx="30" ry="4" fill="#000" opacity="0.1"/>
-            <path d="M 25 55 C 10 55 5 40 15 30 C 15 15 35 10 45 20 C 55 5 85 10 85 30 C 98 30 100 50 85 55 Z" fill="url(#cloud-grad-logo)" stroke="#4a90e2" stroke-width="3" stroke-linejoin="round"/>
-            <path d="M 30 25 C 35 15 45 15 50 22" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity="0.7"/>
-          </svg>
-        </span>Courtroom Live<sup>™</sup>
-      </div>
-      <div class="tagline" id="login-tagline">Вход в аккаунт · Sign in</div>
-    </div>
+    <h2 style="color:#00aff0; text-align:center; margin-top:0;">Courtroom Live</h2>
+    <div class="login-error" id="login-error">Ошибка</div>
     
-    <div class="login-body" id="login-view">
-      <div class="login-error" id="login-error">Ошибка авторизации</div>
+    <div id="login-view">
       <div class="form-group">
-        <label>Email</label>
-        <input type="text" id="login-username" placeholder="user@mail.com" autocomplete="username">
+        <label>Телефон</label>
+        <input type="text" id="login-username" placeholder="+79991112233" value="+79991112233">
       </div>
       <div class="form-group">
         <label>Пароль</label>
-        <input type="password" id="login-password" placeholder="••••••••" autocomplete="current-password">
+        <input type="password" id="login-password" placeholder="••••••••" value="123456">
       </div>
-      <div class="status-row">
-        <label>Статус:</label>
-        <div class="status-options">
-          <div class="status-option active" data-status="online" onclick="selectLoginStatus('online', this)">
-            <span class="status-dot online"></span>В сети
-          </div>
-          <div class="status-option" data-status="away" onclick="selectLoginStatus('away', this)">
-            <span class="status-dot away"></span>Нет на месте
-          </div>
-          <div class="status-option" data-status="busy" onclick="selectLoginStatus('busy', this)">
-            <span class="status-dot busy"></span>Занят
-          </div>
-        </div>
-      </div>
-      <button class="signin-btn" onclick="doLogin()">Вход</button>
-      <div class="db-hint">
-        💡 Для теста зарегистрируйте два аккаунта. Вход по Email и паролю (мин. 6 символов).
-      </div>
-      <div class="footer-links">
-        <a onclick="showRegisterView()">Регистрация</a> · <a onclick="alert('Сброс пароля недоступен в демо')">Забыли пароль?</a>
+      <button class="signin-btn" onclick="doLogin()">Войти</button>
+      <div style="text-align:center; margin-top:15px; font-size:12px;">
+        <a href="#" onclick="toggleAuth(true)" style="color:#00aff0;">Нет аккаунта? Зарегистрироваться</a>
       </div>
     </div>
 
-    <div class="login-body" id="register-view" style="display:none;">
-      <div class="register-tabs">
-        <div class="register-tab active" onclick="switchRegTab('phone', this)">📱 Телефон</div>
-        <div class="register-tab" onclick="switchRegTab('email', this)">✉️ Email</div>
+    <div id="register-view" style="display:none;">
+      <div class="form-group">
+        <label>Телефон</label>
+        <input type="text" id="reg-phone" placeholder="+79993334455">
       </div>
-      
-      <div class="register-section active" id="reg-section-phone">
-        <p style="font-size:12px;color:#666;margin:0 0 5px;">Регистрация по номеру телефона (номер будет виден другим).</p>
-        <label>Номер телефона:</label>
-        <input type="text" id="phone-reg-number" placeholder="+7 (999) 123-45-67">
-        <label>Ваше имя:</label>
-        <input type="text" id="phone-reg-name" placeholder="Иван Иванов">
-        <label>Пароль (мин. 6 символов):</label>
-        <input type="password" id="phone-reg-password" placeholder="••••••••">
-        <div class="login-error" id="phone-error"></div>
-        <button class="signin-btn" onclick="registerWithPhone()">📱 Зарегистрироваться</button>
+      <div class="form-group">
+        <label>Имя</label>
+        <input type="text" id="reg-name" placeholder="Ваше Имя">
       </div>
-
-      <div class="register-section" id="reg-section-email">
-        <p style="font-size:12px;color:#666;margin:0 0 5px;">Обычная регистрация по Email.</p>
-        <label>Email:</label>
-        <input type="text" id="email-reg-address" placeholder="example@mail.com">
-        <label>Ваше имя:</label>
-        <input type="text" id="email-reg-name" placeholder="Иван Иванов">
-        <label>Пароль (мин. 6 символов):</label>
-        <input type="password" id="email-reg-password" placeholder="••••••••">
-        <div class="login-error" id="email-error"></div>
-        <button class="signin-btn" onclick="registerWithEmail()">✉️ Зарегистрироваться</button>
+      <div class="form-group">
+        <label>Пароль</label>
+        <input type="password" id="reg-password" placeholder="••••••••">
       </div>
-
-      <div class="db-hint">
-        ℹ️ После регистрации аккаунт сохраняется в базе Supabase.
-      </div>
-
-      <div class="footer-links" style="margin-top: 16px;">
-        <a onclick="showLoginView()">← Назад к входу</a>
+      <button class="signin-btn" onclick="registerUser()">Зарегистрироваться</button>
+      <div style="text-align:center; margin-top:15px; font-size:12px;">
+        <a href="#" onclick="toggleAuth(false)" style="color:#00aff0;">Уже есть аккаунт? Войти</a>
       </div>
     </div>
   </div>
@@ -705,114 +141,50 @@
 
 <div class="aero-window hidden" id="main-window">
   <div class="title-bar">
-    <div class="title-bar-text"><span data-i18n="title">⚖️ Courtroom Live Messenger 2009</span></div>
+    <div>⚖️ Courtroom Live (Tabrica)</div>
     <div class="title-bar-controls">
-      <button onclick="openModal('modal-settings')" title="Settings">⚙️</button>
-      <button onclick="minimizeWindow()" title="Minimize">_</button>
-      <button onclick="maximizeWindow()" title="Maximize">□</button>
-      <button class="close-btn" onclick="closeWindow()" title="Close">✕</button>
+      <button onclick="logout()">Выход</button>
     </div>
   </div>
 
   <div class="main-area">
     <div class="sidebar">
       <div class="my-profile">
-        <div class="my-avatar-container" id="my-avatar-display">
-          <div class="my-status-dot online" id="my-status-dot" onclick="toggleStatusMenu(event)" title="Change status"></div>
-        </div>
+        <div class="my-avatar-container">👤</div>
         <div class="my-info">
-          <div class="my-status">
-            <span id="display-my-name">Loading...</span>
-            <button class="cloud-btn" onclick="toggleCloud(event)" title="My Profile">
-              <svg viewBox="0 0 100 70" xmlns="http://www.w3.org/2000/svg">
-                <path d="M 25 55 C 10 55 5 40 15 30 C 15 15 35 10 45 20 C 55 5 85 10 85 30 C 98 30 100 50 85 55 Z" fill="#fff" stroke="#4a90e2" stroke-width="3"/>
-              </svg>
-            </button>
-          </div>
-          <div class="my-mood" id="display-my-mood" data-i18n="user">Пользователь</div>
-        </div>
-        <div class="status-menu" id="status-menu">
-          <div onclick="setMyStatus('online')"><span class="status-dot online"></span> <span data-i18n="online">В сети</span></div>
-          <div onclick="setMyStatus('away')"><span class="status-dot away"></span> <span data-i18n="away">Нет на месте</span></div>
-          <div onclick="setMyStatus('busy')"><span class="status-dot busy"></span> <span data-i18n="busy">Занят</span></div>
-        </div>
-        <div class="info-cloud-popup popup" id="info-cloud">
-          <h3><span data-i18n="my_profile">👤 Мой профиль</span> <button class="edit-btn" onclick="toggleEditProfile(event, 'me')" data-i18n="edit">✏️ Изменить</button></h3>
-          <div id="profile-view-mode">
-            <p><b data-i18n="name">Имя:</b> <span id="view-name">...</span></p>
-            <p><b data-i18n="phone">Телефон:</b> <span id="view-phone">...</span></p>
-            <p><b data-i18n="status">Статус:</b> <span id="view-role">...</span></p>
-            <p><b data-i18n="bio">О себе:</b> <span id="view-bio" data-i18n="welcome">Добро пожаловать!</span></p>
-          </div>
-          <div id="profile-edit-mode" style="display:none;">
-            <div class="avatar-edit-area"><button class="edit-btn" onclick="triggerFileUpload('me')" data-i18n="change_photo">📷 Сменить фото</button></div>
-            <p><b data-i18n="name">Имя:</b><br><input type="text" class="edit-input" id="edit-name"></p>
-            <p><b data-i18n="phone">Телефон:</b><br><input type="text" class="edit-input" id="edit-phone" disabled></p>
-            <p><b data-i18n="status">Статус:</b><br><input type="text" class="edit-input" id="edit-role"></p>
-            <p><b data-i18n="bio">О себе:</b><br><textarea class="edit-input" id="edit-bio" rows="2"></textarea></p>
-            <button class="edit-btn" style="background:rgba(0,150,0,.2); border-color:rgba(0,150,0,.4); width:100%; margin-top:5px;" onclick="saveProfile(event, 'me')" data-i18n="save">💾 Сохранить</button>
-          </div>
+          <div class="my-status" id="display-my-name">Загрузка...</div>
+          <div class="my-mood" id="display-my-phone">...</div>
         </div>
       </div>
       <div class="action-bar">
-        <button onclick="openModal('modal-add-contact')" data-i18n="add_contact">➕ Контакт</button>
+        <button onclick="openModal('modal-add-contact')">➕ Добавить контакт</button>
       </div>
-      <div class="search-box">
-        <input type="text" placeholder="Поиск по контактам..." id="search-input">
+      <div class="contact-list" id="contact-list">
+        <!-- Контакты будут здесь -->
       </div>
-      <div class="contact-list" id="contact-list"></div>
     </div>
 
     <div class="chat-area">
-      <div class="chat-header">
-        <div class="chat-title" id="chat-title" data-i18n="select_chat">Выберите собеседника...</div>
-        <div style="display:flex; gap:10px; align-items:center; z-index:2;">
-          <button class="header-btn" id="view-contact-profile-btn" onclick="toggleContactProfile(event)" style="display:none;" data-i18n="profile">ℹ️ Профиль</button>
-        </div>
-      </div>
+      <div class="chat-header" id="chat-title">Выберите собеседника...</div>
       
-      <div class="contact-profile-popup popup" id="contact-profile-popup">
-        <h3 id="contact-popup-title">Профиль</h3>
-        <div id="contact-view-mode">
-          <p><b data-i18n="phone">Телефон:</b> <span id="cp-phone">-</span></p>
-          <p><b data-i18n="bio">О себе:</b> <span id="cp-bio">-</span></p>
-        </div>
+      <div class="messages" id="messages">
+        <div style="text-align:center; color:#999; margin-top:50px;">Выберите контакт для общения</div>
       </div>
 
-      <div class="messages chat-theme-default" id="messages">
-        <div style="text-align:center; color:var(--text-muted); margin-top:50px;" data-i18n="select_chat_desc">Выберите контакт...</div>
-      </div>
-
-      <div class="input-area" id="inputArea">
-        <div class="input-row">
-          <textarea id="message-input" placeholder="Сообщение" data-i18n-placeholder="type_message"></textarea>
-          
-          <button id="send-btn" class="gavel-btn" title="Send">
-            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <g id="board">
-                <rect x="15" y="75" width="40" height="12" rx="4" fill="#6b412b" stroke="#3d1f15" stroke-width="4"/>
-                <rect x="22" y="65" width="26" height="12" rx="4" fill="#d9a07d" stroke="#3d1f15" stroke-width="4"/>
-              </g>
-              <g id="gavel">
-                <rect x="49" y="35" width="12" height="55" rx="4" fill="#8c5a3c" stroke="#3d1f15" stroke-width="4"/>
-                <rect x="32" y="20" width="46" height="22" rx="5" fill="#c8825a" stroke="#3d1f15" stroke-width="4"/>
-                <rect x="28" y="15" width="16" height="32" rx="5" fill="#d9a07d" stroke="#3d1f15" stroke-width="4"/>
-                <rect x="66" y="15" width="16" height="32" rx="5" fill="#d9a07d" stroke="#3d1f15" stroke-width="4"/>
-              </g>
-            </svg>
-          </button>
-        </div>
+      <div class="input-area" id="inputArea" style="display:none;">
+        <textarea id="message-input" placeholder="Сообщение..."></textarea>
+        <button class="gavel-btn" onclick="sendMessage()">➤</button>
       </div>
     </div>
   </div>
 
   <div class="modal-overlay" id="modal-add-contact">
     <div class="modal-window">
-      <div class="modal-header">Добавить новый контакт</div>
+      <h3 style="margin-top:0;">Добавить контакт</h3>
       <div class="modal-body">
-        <label>Номер телефона:</label>
-        <input type="text" id="new-contact-phone" placeholder="+7 (999) 111-22-33">
-        <div class="login-error" id="add-contact-error" style="margin-top: 10px;"></div>
+        <label style="font-size:12px; font-weight:bold; display:block; margin-bottom:5px;">Номер телефона:</label>
+        <input type="text" id="new-contact-phone" placeholder="+79992223344" style="width:100%; padding:8px; border:1px solid #ccc; border-radius:4px;">
+        <div id="add-contact-error" style="color:red; font-size:12px; margin-top:10px; display:none;"></div>
       </div>
       <div class="modal-footer">
         <button onclick="closeModal('modal-add-contact')">Отмена</button>
@@ -820,411 +192,286 @@
       </div>
     </div>
   </div>
-
-  <div class="modal-overlay" id="modal-settings">
-    <div class="modal-window">
-      <div class="modal-header"><span>⚙️ Настройки</span> <button class="edit-btn" style="background:transparent;border:none;font-size:16px;" onclick="closeModal('modal-settings')">✕</button></div>
-      <div class="modal-body">
-         <div class="tg-section">
-            <div class="tg-row" onclick="logout()">
-              <div class="tg-row-info"><div class="tg-row-title">🚪 Выйти из аккаунта</div><div class="tg-row-desc">Sign out</div></div>
-              <div class="tg-row-value" style="color:#e53935;">›</div>
-            </div>
-          </div>
-      </div>
-      <div class="modal-footer">
-        <button class="primary" onclick="closeModal('modal-settings')">Готово</button>
-      </div>
-    </div>
-  </div>
 </div>
 
 <script>
-  // --- ИНИЦИАЛИЗАЦИЯ SUPABASE ---
-  const SUPABASE_URL = 'https://btjvayclkkwjfllzuwg.supabase.co';
-  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ0dGp2YXljbGtrd2pmbGx6dXdnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMzNzg4MzQsImV4cCI6MjEwODk1NDgzNH0.PnLodX1-7wHBrwefjtPVjDoFh4rVy-fdrILKpW3TJ_w';
-  const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  // --- КОНСТАНТЫ ТАБРИКИ ---
+  const TABRICA_BASE = "https://api.tabrica.ru";
+  const DB_ID = 233;
+  const TABLE_USERS = 328;
+  const TABLE_MESSAGES = 329;
+  const TOKEN = "tab_iTfwAmv8g63qpBJMP37CHhYSh6cS0yNCotnzhiibXTYmqOXFYrQF_Psk5jm6KVI0";
 
   // --- ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ---
-  let myProfile = { id: null, name: 'User', phone: '', role: 'User', bio: '', avatar: '', status: 'online' };
+  let myProfile = null;
   let contacts = [];
-  let threads = {};
   let activeId = null;
-  let isLoggedIn = false;
-  let selectedLoginStatus = 'online';
-  let messageChannel = null;
+  let messageInterval = null;
 
-  const defaultAvatarUrl = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%23005f8a'/><circle cx='50' cy='35' r='18' fill='%23fff'/><path d='M 15 80 C 15 50, 85 50, 85 80 Z' fill='%23fff'/></svg>";
-
-  // DOM Элементы
-  const messagesEl = document.getElementById('messages');
-  const inputEl = document.getElementById('message-input');
-  const contactListEl = document.getElementById('contact-list');
-  const chatTitleEl = document.getElementById('chat-title');
-  const infoCloud = document.getElementById('info-cloud');
-  const contactProfilePopup = document.getElementById('contact-profile-popup');
-
-  // --- ЗВУКИ ---
-  const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  function playClick() { if(audioCtx.state === 'suspended') audioCtx.resume(); const o = audioCtx.createOscillator(), g = audioCtx.createGain(); o.type = 'sine'; o.frequency.setValueAtTime(800, audioCtx.currentTime); o.frequency.exponentialRampToValueAtTime(300, audioCtx.currentTime + .05); g.gain.setValueAtTime(.05, audioCtx.currentTime); g.gain.exponentialRampToValueAtTime(.001, audioCtx.currentTime + .05); o.connect(g); g.connect(audioCtx.destination); o.start(); o.stop(audioCtx.currentTime + .05); }
-  function playIncomingSound() { if(audioCtx.state === 'suspended') audioCtx.resume(); const t = audioCtx.currentTime; const note = (freq, start, dur, vol) => { const o = audioCtx.createOscillator(); const g = audioCtx.createGain(); o.type = 'sine'; o.frequency.setValueAtTime(freq, t + start); g.gain.setValueAtTime(0.001, t + start); g.gain.exponentialRampToValueAtTime(vol, t + start + 0.02); g.gain.exponentialRampToValueAtTime(0.001, t + start + dur); o.connect(g); g.connect(audioCtx.destination); o.start(t + start); o.stop(t + start + dur + 0.05); }; note(880, 0, 0.15, 0.1); note(1046.50, 0.12, 0.3, 0.1); }
+  // --- API ЗАПРОСЫ ---
+  async function apiRequest(endpoint, method = 'GET', body = null) {
+    const headers = {
+      'Authorization': `Bearer ${TOKEN}`,
+      'Content-Type': 'application/json'
+    };
+    const config = { method, headers };
+    if (body) config.body = JSON.stringify(body);
+    
+    const res = await fetch(`${TABRICA_BASE}${endpoint}`, config);
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.message || 'Ошибка API');
+    }
+    return res.json();
+  }
 
   // --- АВТОРИЗАЦИЯ ---
-  function showRegisterView() {
-    document.getElementById('login-view').style.display = 'none';
-    document.getElementById('register-view').style.display = 'block';
-  }
-  function showLoginView() {
-    document.getElementById('login-view').style.display = 'block';
-    document.getElementById('register-view').style.display = 'none';
-  }
-  function switchRegTab(tab, el) {
-    document.querySelectorAll('.register-tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.register-section').forEach(s => s.classList.remove('active'));
-    el.classList.add('active');
-    document.getElementById('reg-section-' + tab).classList.add('active');
-  }
-  function selectLoginStatus(status, el) {
-    selectedLoginStatus = status;
-    document.querySelectorAll('.status-option').forEach(o => o.classList.remove('active'));
-    el.classList.add('active');
+  function toggleAuth(isRegister) {
+    document.getElementById('login-view').style.display = isRegister ? 'none' : 'block';
+    document.getElementById('register-view').style.display = isRegister ? 'block' : 'none';
+    document.getElementById('login-error').style.display = 'none';
   }
 
   async function doLogin() {
-    const email = document.getElementById('login-username').value.trim();
+    const phone = document.getElementById('login-username').value.trim();
     const password = document.getElementById('login-password').value;
     const errEl = document.getElementById('login-error');
-    errEl.classList.remove('show');
-    
-    if(!email || !password) { errEl.textContent = 'Введите email и пароль'; errEl.classList.add('show'); return; }
+    errEl.style.display = 'none';
 
-    const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
-    if (error) {
-      errEl.textContent = '❌ ' + error.message;
-      errEl.classList.add('show'); 
+    try {
+      // Получаем пользователей с таким номером
+      const res = await apiRequest(`/public/v1/databases/${DB_ID}/tables/${TABLE_USERS}/records?response_format=names`);
+      
+      // Ищем совпадение по номеру и паролю (так как Табрика не умеет искать по двум полям сразу в одном запросе)
+      const user = res.data.records.find(u => u.phone === phone && u.password === password);
+
+      if (!user) throw new Error("Неверный номер телефона или пароль");
+
+      myProfile = { id: user.id, name: user.username, phone: user.phone };
+      
+      document.getElementById('login-overlay').classList.add('hidden');
+      document.getElementById('main-window').classList.remove('hidden');
+      
+      document.getElementById('display-my-name').textContent = myProfile.name;
+      document.getElementById('display-my-phone').textContent = myProfile.phone;
+
+      await loadContacts();
+    } catch (e) {
+      errEl.textContent = "❌ " + e.message;
+      errEl.style.display = 'block';
+    }
+  }
+
+  async function registerUser() {
+    const phone = document.getElementById('reg-phone').value.trim();
+    const name = document.getElementById('reg-name').value.trim();
+    const password = document.getElementById('reg-password').value;
+    const errEl = document.getElementById('login-error');
+    errEl.style.display = 'none';
+
+    if (!phone || !name || !password) {
+      errEl.textContent = "Заполните все поля";
+      errEl.style.display = 'block';
       return;
     }
-    await initUserSession(data.user);
-  }
 
-  async function registerWithPhone() {
-    const phone = document.getElementById('phone-reg-number').value.trim();
-    const name = document.getElementById('phone-reg-name').value.trim();
-    const password = document.getElementById('phone-reg-password').value;
-    const errEl = document.getElementById('phone-error');
-    errEl.classList.remove('show');
-
-    if(!phone || !name || password.length < 6) { errEl.textContent = 'Заполните все поля. Пароль от 6 символов.'; errEl.classList.add('show'); return; }
-
-    const dummyEmail = phone.replace(/[^0-9]/g, '') + '@phone.local';
-
-    const { data, error } = await supabaseClient.auth.signUp({ email: dummyEmail, password: password });
-    if (error) { errEl.textContent = '❌ ' + error.message; errEl.classList.add('show'); return; }
-
-    if (data.user) {
-      await supabaseClient.from('profiles').insert({
-        id: data.user.id,
-        username: name,
-        phone: phone,
-        bio: 'Привет, я использую Courtroom Live!',
-        status: selectedLoginStatus
-      });
-      await initUserSession(data.user);
+    try {
+      const body = {
+        data: {
+          username: name,
+          phone: phone,
+          password: password,
+          status: "online",
+          bio: "Привет, я в Courtroom Live!"
+        }
+      };
+      
+      const res = await apiRequest(`/public/v1/databases/${DB_ID}/tables/${TABLE_USERS}/records`, 'POST', body);
+      
+      // После успешной регистрации сразу входим
+      document.getElementById('login-username').value = phone;
+      document.getElementById('login-password').value = password;
+      await doLogin();
+      
+    } catch (e) {
+      errEl.textContent = "❌ " + e.message;
+      errEl.style.display = 'block';
     }
   }
 
-  async function registerWithEmail() {
-    const email = document.getElementById('email-reg-address').value.trim();
-    const name = document.getElementById('email-reg-name').value.trim();
-    const password = document.getElementById('email-reg-password').value;
-    const errEl = document.getElementById('email-error');
-    errEl.classList.remove('show');
-
-    if(!email || !name || password.length < 6) { errEl.textContent = 'Заполните все поля. Пароль от 6 символов.'; errEl.classList.add('show'); return; }
-
-    const { data, error } = await supabaseClient.auth.signUp({ email, password });
-    if (error) { errEl.textContent = '❌ ' + error.message; errEl.classList.add('show'); return; }
-
-    if (data.user) {
-      await supabaseClient.from('profiles').insert({
-        id: data.user.id,
-        username: name,
-        phone: '+7 (000) 000-00-00',
-        bio: 'Привет, я использую Courtroom Live!',
-        status: selectedLoginStatus
-      });
-      await initUserSession(data.user);
-    }
+  function logout() {
+    location.reload();
   }
-
-  async function initUserSession(user) {
-    let { data: profile, error } = await supabaseClient.from('profiles').select('*').eq('id', user.id).single();
-    
-    if (!profile) {
-      // Если профиля нет (редкий случай), создаем
-      const { data: newProfile } = await supabaseClient.from('profiles').insert({
-        id: user.id, username: user.email.split('@')[0], status: 'online'
-      }).select().single();
-      profile = newProfile;
-    }
-
-    myProfile.id = user.id;
-    myProfile.name = profile.username;
-    myProfile.phone = profile.phone || '';
-    myProfile.bio = profile.bio || '';
-    myProfile.status = profile.status || 'online';
-    myProfile.avatar = profile.avatar_url || defaultAvatarUrl;
-
-    document.getElementById('login-overlay').classList.add('hidden');
-    document.getElementById('main-window').classList.remove('hidden');
-    isLoggedIn = true;
-
-    document.getElementById('display-my-name').textContent = myProfile.name;
-    document.getElementById('view-name').textContent = myProfile.name;
-    document.getElementById('view-phone').textContent = myProfile.phone;
-    document.getElementById('view-bio').textContent = myProfile.bio;
-    document.getElementById('display-my-mood').textContent = myProfile.status;
-    document.getElementById('my-avatar-display').innerHTML = `<img src="${myProfile.avatar}"> <div class="my-status-dot ${myProfile.status}"></div>`;
-
-    await loadContacts();
-    subscribeToMessages();
-  }
-
-  async function logout() {
-    if (!confirm('Выйти из аккаунта?')) return;
-    await supabaseClient.auth.signOut();
-    window.location.reload();
-  }
-
-  // Проверка сессии при загрузке
-  supabaseClient.auth.getSession().then(({ data: { session } }) => {
-    if (session) {
-      initUserSession(session.user);
-    }
-  });
 
   // --- КОНТАКТЫ ---
   async function addNewContact() {
     const phone = document.getElementById('new-contact-phone').value.trim();
     const errEl = document.getElementById('add-contact-error');
-    errEl.classList.remove('show');
+    errEl.style.display = 'none';
 
-    if(!phone) return;
+    if (!phone) return;
 
-    // Ищем пользователя по номеру
-    const { data: userProfile, error } = await supabaseClient.from('profiles').select('*').eq('phone', phone).single();
+    try {
+      const res = await apiRequest(`/public/v1/databases/${DB_ID}/tables/${TABLE_USERS}/records?response_format=names`);
+      const user = res.data.records.find(u => u.phone === phone);
 
-    if (error || !userProfile) {
-      errEl.textContent = '❌ Пользователь с таким номером не найден!';
-      errEl.classList.add('show'); 
-      return;
+      if (!user) throw new Error("Пользователь с таким номером не найден");
+      if (user.id === myProfile.id) throw new Error("Это ваш собственный номер");
+      
+      if (contacts.find(c => c.id === user.id)) {
+        throw new Error("Контакт уже добавлен");
+      }
+
+      contacts.push({ id: user.id, name: user.username, phone: user.phone });
+      localStorage.setItem('tabrica_contacts_' + myProfile.id, JSON.stringify(contacts));
+      
+      renderContacts();
+      closeModal('modal-add-contact');
+      document.getElementById('new-contact-phone').value = '';
+
+    } catch (e) {
+      errEl.textContent = "❌ " + e.message;
+      errEl.style.display = 'block';
     }
-
-    if (userProfile.id === myProfile.id) {
-      errEl.textContent = '❌ Это ваш собственный номер!';
-      errEl.classList.add('show'); 
-      return;
-    }
-
-    // Добавляем в таблицу contacts
-    const { error: insertError } = await supabaseClient.from('contacts').insert({
-      user_id: myProfile.id,
-      contact_id: userProfile.id
-    });
-
-    if (insertError) {
-      errEl.textContent = '❌ Этот контакт уже добавлен!';
-      errEl.classList.add('show'); 
-      return;
-    }
-
-    playClick(); 
-    closeModal('modal-add-contact'); 
-    document.getElementById('new-contact-phone').value = '';
-    await loadContacts();
   }
 
   async function loadContacts() {
-    const { data, error } = await supabaseClient
-      .from('contacts')
-      .select(`contact_id, profiles:contact_id (id, username, phone, avatar_url, status, bio)`)
-      .eq('user_id', myProfile.id);
-
-    contacts = [];
-    if (data) {
-      data.forEach(c => {
-        const p = c.profiles;
-        contacts.push({
-          id: p.id,
-          name: p.username,
-          phone: p.phone,
-          avatar: p.avatar_url || defaultAvatarUrl,
-          status: p.status,
-          bio: p.bio
-        });
-      });
+    // Контакты сохраняются в браузере для простоты
+    const saved = localStorage.getItem('tabrica_contacts_' + myProfile.id);
+    if (saved) {
+      contacts = JSON.parse(saved);
+    } else {
+      contacts = [];
     }
     renderContacts();
   }
 
   function renderContacts() {
-    contactListEl.innerHTML = ''; 
-    const q = document.getElementById('search-input').value.toLowerCase().trim();
+    const list = document.getElementById('contact-list');
+    list.innerHTML = '';
     
-    contacts.filter(c => !q || c.name.toLowerCase().includes(q) || (c.phone && c.phone.includes(q))).forEach(c => {
-      const div = document.createElement('div'); 
+    if (contacts.length === 0) {
+      list.innerHTML = '<div style="padding:15px; text-align:center; color:#888; font-size:12px;">Нет контактов. Нажмите "Добавить".</div>';
+      return;
+    }
+
+    contacts.forEach(c => {
+      const div = document.createElement('div');
       div.className = 'contact' + (c.id === activeId ? ' active' : '');
-      let sc = 'status-online'; if(c.status === 'away') sc = 'status-away'; if(c.status === 'busy') sc = 'status-court';
-      
       div.innerHTML = `
-        <div class="contact-avatar-container">${c.avatar ? `<img src="${c.avatar}">` : c.name[0]}</div>
-        <div class="contact-info" onclick="selectContact('${c.id}')">
+        <div class="contact-avatar">${c.name[0].toUpperCase()}</div>
+        <div class="contact-info">
           <div class="contact-name">${c.name}</div>
-          <div class="contact-phone">📞 ${c.phone || 'Hidden'}</div>
+          <div class="contact-phone">${c.phone}</div>
         </div>
-        <div class="contact-status ${sc}"></div>
       `;
-      contactListEl.appendChild(div);
+      div.onclick = () => selectContact(c);
+      list.appendChild(div);
     });
   }
-  document.getElementById('search-input').addEventListener('input', renderContacts);
 
-  // --- СООБЩЕНИЯ ---
-  async function selectContact(id) {
-    activeId = id;
+  // --- ЧАТ ---
+  function selectContact(contact) {
+    activeId = contact.id;
+    document.getElementById('chat-title').textContent = "Чат с " + contact.name;
+    document.getElementById('inputArea').style.display = 'flex';
     renderContacts();
     
-    const c = contacts.find(x => x.id === id);
-    if (!c) return;
+    loadChatHistory();
 
-    chatTitleEl.innerHTML = `<span style="cursor:pointer;" onclick="toggleContactProfile(event)">${c.name}</span> <span>[${c.status}]</span>`;
-    document.getElementById('view-contact-profile-btn').style.display = 'flex';
-    
-    await loadChatHistory(id);
+    // Запускаем опрос новых сообщений каждые 3 секунды
+    if (messageInterval) clearInterval(messageInterval);
+    messageInterval = setInterval(loadChatHistory, 3000);
   }
 
-  async function loadChatHistory(contactId) {
-    // Получаем все сообщения между двумя пользователями
-    const { data: msgs, error } = await supabaseClient
-      .from('messages')
-      .select('*')
-      .or(`and(sender_id.eq.${myProfile.id},receiver_id.eq.${contactId}),and(sender_id.eq.${contactId},receiver_id.eq.${myProfile.id})`)
-      .order('created_at', { ascending: true });
-
-    threads[contactId] = [];
-    
-    if (msgs) {
-      msgs.forEach(m => {
-        threads[contactId].push({
-          id: m.id,
-          who: m.sender_id === myProfile.id ? 'me' : 'them',
-          text: m.content,
-          time: new Date(m.created_at).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
-          type: m.message_type || 'text'
-        });
-      });
-    }
-    
-    renderChat();
-  }
-
-  function renderChat() {
+  async function loadChatHistory() {
     if (!activeId) return;
-    messagesEl.innerHTML = '';
-    
-    if (threads[activeId]) {
-      threads[activeId].forEach(m => {
-        const div = document.createElement('div');
-        div.className = `msg ${m.who === 'me' ? 'msg-me' : 'msg-them'}`;
-        
-        let bubbleContent = '';
-        if (m.type === 'image') bubbleContent += `<img src="${m.text}" alt="image">`;
-        else bubbleContent += m.text;
 
-        div.innerHTML = `<div class="msg-meta">${m.time}</div><div class="msg-bubble">${bubbleContent}</div>`;
-        messagesEl.appendChild(div);
-      });
+    try {
+      // Запрашиваем последние 100 сообщений
+      const res = await apiRequest(`/public/v1/databases/${DB_ID}/tables/${TABLE_MESSAGES}/records?limit=100&response_format=names`);
+      
+      // Фильтруем: сообщения между мной и активным контактом
+      const filtered = res.data.records.filter(m => 
+        (m.sender_id == myProfile.id && m.receiver_id == activeId) || 
+        (m.sender_id == activeId && m.receiver_id == myProfile.id)
+      );
+      
+      // Сортируем по ID (предполагая, что ID автоинкремент)
+      filtered.sort((a, b) => a.id - b.id);
+
+      const messagesEl = document.getElementById('messages');
+      
+      // Если изменилось количество сообщений, перерисовываем
+      if (messagesEl.children.length !== filtered.length + (filtered.length === 0 ? 1 : 0)) {
+        messagesEl.innerHTML = '';
+        
+        if (filtered.length === 0) {
+          messagesEl.innerHTML = '<div style="text-align:center; color:#999; margin-top:20px;">Нет сообщений. Напишите первым!</div>';
+        }
+
+        filtered.forEach(m => {
+          const div = document.createElement('div');
+          const isMe = m.sender_id == myProfile.id;
+          div.className = `msg ${isMe ? 'msg-me' : 'msg-them'}`;
+          
+          const time = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+          
+          div.innerHTML = `
+            <div class="msg-meta">${time}</div>
+            <div class="msg-bubble">${m.content || m.text}</div>
+          `;
+          messagesEl.appendChild(div);
+        });
+        
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+      }
+
+    } catch (e) {
+      console.error("Ошибка загрузки сообщений:", e);
     }
-    messagesEl.scrollTop = messagesEl.scrollHeight;
   }
 
   async function sendMessage() {
-    const text = inputEl.value.trim(); 
+    const input = document.getElementById('message-input');
+    const text = input.value.trim();
+    
     if (!text || !activeId) return;
     
-    playClick(); 
-    inputEl.value = '';
-    
-    // Отправляем в базу
-    const { error } = await supabaseClient.from('messages').insert({
-      sender_id: myProfile.id,
-      receiver_id: activeId,
-      content: text,
-      message_type: 'text'
-    });
+    input.value = ''; // Очищаем поле сразу
 
-    if (error) {
-      console.error('Ошибка отправки', error);
-      alert('Не удалось отправить сообщение');
-    }
-    // renderChat() вызовется автоматически через Realtime
-  }
-  document.getElementById('send-btn').onclick = sendMessage;
-  inputEl.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); } });
-
-  // --- REALTIME ---
-  function subscribeToMessages() {
-    if (messageChannel) supabaseClient.removeChannel(messageChannel);
-    
-    messageChannel = supabaseClient
-      .channel('public:messages')
-      .on('postgres_changes', 
-        { event: 'INSERT', schema: 'public', table: 'messages' },
-        async (payload) => {
-          const newMsg = payload.new;
-
-          // Если сообщение относится к текущему открытому чату
-          if (newMsg.sender_id === activeId || newMsg.receiver_id === activeId) {
-            if (!threads[activeId]) threads[activeId] = [];
-            threads[activeId].push({
-              id: newMsg.id,
-              who: newMsg.sender_id === myProfile.id ? 'me' : 'them',
-              text: newMsg.content,
-              time: new Date(newMsg.created_at).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
-              type: newMsg.message_type
-            });
-            renderChat();
-            if (newMsg.sender_id !== myProfile.id) playIncomingSound();
-          } else if (newMsg.receiver_id === myProfile.id) {
-             // Если сообщение от другого контакта, можно показать уведомление
-             playIncomingSound();
-          }
+    try {
+      const body = {
+        data: {
+          sender_id: myProfile.id,
+          receiver_id: activeId,
+          content: text,
+          message_type: "text",
+          is_read: false
         }
-      )
-      .subscribe();
+      };
+
+      await apiRequest(`/public/v1/databases/${DB_ID}/tables/${TABLE_MESSAGES}/records`, 'POST', body);
+      
+      // Мгновенно обновляем историю
+      await loadChatHistory();
+
+    } catch (e) {
+      alert("Не удалось отправить: " + e.message);
+    }
   }
 
-  // --- UI ХЕЛПЕРЫ ---
-  function toggleContactProfile(event) {
-    if(event) event.stopPropagation();
-    if (contactProfilePopup.classList.contains('active')) { contactProfilePopup.classList.remove('active'); return; }
-    const c = contacts.find(x => x.id === activeId); if (!c) return;
-    document.getElementById('contact-popup-title').innerHTML = `👤 ${c.name}`;
-    document.getElementById('cp-phone').textContent = c.phone || 'Not specified';
-    document.getElementById('cp-bio').textContent = c.bio || 'No bio';
-    contactProfilePopup.classList.add('active');
-  }
-  function toggleCloud(event) { if(event) event.stopPropagation(); infoCloud.classList.toggle('active'); }
-  function openModal(id) { playClick(); document.getElementById(id).classList.add('active'); }
-  function closeModal(id) { playClick(); document.getElementById(id).classList.remove('active'); }
-  function minimizeWindow() { document.getElementById('main-window').classList.toggle('minimized'); }
-  function maximizeWindow() { document.getElementById('main-window').classList.toggle('maximized'); }
-  function closeWindow() { document.getElementById('main-window').classList.add('hidden'); }
-  
-  document.addEventListener('click', e => {
-    if (!infoCloud.contains(e.target) && !e.target.closest('.cloud-btn')) infoCloud.classList.remove('active');
-    if (!contactProfilePopup.contains(e.target) && !e.target.closest('.header-btn') && !e.target.closest('.chat-title') && !e.target.closest('.contact-avatar-container')) contactProfilePopup.classList.remove('active');
+  // Отправка по Enter
+  document.getElementById('message-input').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
   });
+
+  // --- ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ---
+  function openModal(id) { document.getElementById(id).classList.add('active'); }
+  function closeModal(id) { document.getElementById(id).classList.remove('active'); }
 
 </script>
 </body>
