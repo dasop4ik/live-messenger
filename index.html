@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Courtroom Live Messenger 2009</title>
+  <title>Live Messenger</title>
   <style>
     * {
       box-sizing: border-box;
@@ -3111,7 +3111,7 @@
     }
 
     .logo {
-      font-size: 40px;
+      font-size: 34px;
       font-weight: 700;
       color: #00aff0;
       letter-spacing: -1.5px;
@@ -3129,8 +3129,8 @@
     }
 
     .logo-icon svg {
-      width: 40px;
-      height: 28px;
+      width: 44px;
+      height: 44px;
     }
 
     .logo sup {
@@ -3493,21 +3493,17 @@
       <div class="login-header">
         <div class="logo">
           <span class="logo-icon">
-            <svg viewBox="0 0 100 70" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
               <defs>
-                <linearGradient id="cloud-grad-logo" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stop-color="#ffffff" />
-                  <stop offset="60%" stop-color="#d4eaff" />
-                  <stop offset="100%" stop-color="#8bb9fb" />
+                <linearGradient id="bubble-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#66ccff"/>
+                  <stop offset="100%" stop-color="#0066ff"/>
                 </linearGradient>
               </defs>
-              <ellipse cx="50" cy="65" rx="30" ry="4" fill="#000" opacity="0.1" />
-              <path d="M 25 55 C 10 55 5 40 15 30 C 15 15 35 10 45 20 C 55 5 85 10 85 30 C 98 30 100 50 85 55 Z"
-                fill="url(#cloud-grad-logo)" stroke="#4a90e2" stroke-width="3" stroke-linejoin="round" />
-              <path d="M 30 25 C 35 15 45 15 50 22" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"
-                opacity="0.7" />
+              <path d="M 50 15 C 20 15 10 35 10 50 C 10 65 20 75 30 75 L 25 90 L 45 75 C 50 76 80 75 90 50 C 95 35 80 15 50 15 Z" fill="url(#bubble-grad)" stroke="#0044cc" stroke-width="3" stroke-linejoin="round"/>
+              <path d="M 20 50 L 35 50 L 45 35 L 55 65 L 65 45 L 80 45" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-          </span>Courtroom Live<sup>™</sup>
+          </span>Live Messenger<sup>™</sup>
         </div>
         <div class="tagline" id="login-tagline">Вход в аккаунт · Sign in</div>
       </div>
@@ -3630,7 +3626,7 @@
 
   <div class="aero-window hidden" id="main-window">
     <div class="title-bar">
-      <div class="title-bar-text"><span data-i18n="title">⚖️ Courtroom Live Messenger 2009</span></div>
+      <div class="title-bar-text"><span data-i18n="title">⚖️ Live Messenger</span></div>
       <div class="title-bar-controls">
         <button onclick="openModal('modal-settings')" title="Settings">⚙️</button>
         <button onclick="minimizeWindow()" title="Minimize">_</button>
@@ -4147,7 +4143,7 @@
               <div class="tg-row" onclick="logout()">
                 <div class="tg-row-info">
                   <div class="tg-row-title">🚪 Выйти из аккаунта</div>
-                  <div class="tg-row-desc">Sign out of Courtroom Live</div>
+                  <div class="tg-row-desc">Sign out of Live Messenger</div>
                 </div>
                 <div class="tg-row-value" style="color:#e53935;">›</div>
               </div>
@@ -4384,9 +4380,9 @@
 
   <script>
     const translations = {
-      ru: {title: "⚖️ Courtroom Live Messenger 2009", user: "Пользователь", online: "В сети", away: "Нет на месте", busy: "Занят", my_profile: "👤 Мой профиль", edit: "✏️ Изменить", name: "Имя:", phone: "Телефон:", status: "Статус:", bio: "О себе:", welcome: "Добро пожаловать в мессенджер!", change_photo: "📷 Сменить фото", save: "💾 Сохранить", add_contact: "➕ Контакт", add_group: "➕ Группа", search: "Глобальный поиск (имя, номер)...", select_chat: "Выберите собеседника...", select_chat_desc: "Выберите контакт или создайте новый...", profile: "ℹ️ Профиль", my_story: "Моя история", role: "Роль:", members: "Участники:", type_message: "Сообщение", add_contact_title: "Добавить новый контакт", add_group_title: "Создать групповой чат", group_name: "Название группы:", select_members: "Выберите участников:", cancel: "Отмена", create: "Создать", settings: "⚙️ Настройки", general: "Общие", account: "Аккаунт", privacy: "Приватность", notifications: "Уведомления", chat_settings: "Настройки чата", devices: "Устройства", advanced: "Продвинутые", language: "Язык", language_desc: "Выберите язык интерфейса", theme: "Тема оформления", theme_desc: "Светлая, темная или XP (для слабых ПК)", theme_light: "Светлая", theme_dark: "Темная", theme_xp: "Windows XP (для слабых ПК)", sounds: "Звуки", sounds_desc: "Звуки уведомлений и кликов", edit_profile_desc: "Изменить имя, фото и описание", username: "Имя пользователя", phone_visibility: "Кто видит номер", avatar_visibility: "Кто видит фото", everyone: "Все", contacts: "Контакты", nobody: "Никто", messages: "Сообщения", messages_desc: "Кто может писать первым", desktop_notif: "Уведомления на рабочем столе", message_preview: "Показывать текст сообщения", chat_wallpaper: "Фон чата", standard: "Стандартный", text_size: "Размер текста", active_sessions: "Активные сессии", data_usage: "Использование данных", data_usage_desc: "Настройки автоскачивания", proxy: "Настройки прокси", proxy_desc: "Использовать прокси-сервер", done: "Готово", create_story: "Создать историю", story_text: "Текст истории:", story_photo: "Фотография (необязательно):", choose_photo: "📷 Выбрать фото", remove_photo: "✕ Убрать фото", publish: "Опубликовать", recording: "ЗАПИСЬ", connecting: "Соединение..."},
-      uk: {title: "⚖️ Courtroom Live Messenger 2009", user: "Користувач", online: "В мережі", away: "Немає на місці", busy: "Зайнятий", my_profile: "👤 Мій профіль", edit: "✏️ Змінити", name: "Ім'я:", phone: "Телефон:", status: "Статус:", bio: "Про себе:", welcome: "Ласкаво просимо до месенджера!", change_photo: "📷 Змінити фото", save: "💾 Зберегти", add_contact: "➕ Контакт", add_group: "➕ Група", search: "Глобальний пошук (ім'я, номер)...", select_chat: "Виберіть співрозмовника...", select_chat_desc: "Виберіть контакт або створіть новий...", profile: "ℹ️ Профіль", my_story: "Моя історія", role: "Роль:", members: "Учасники:", type_message: "Повідомлення", add_contact_title: "Додати новий контакт", add_group_title: "Створити груповий чат", group_name: "Назва групи:", select_members: "Виберіть учасників:", cancel: "Скасувати", create: "Створити", settings: "⚙️ Налаштування", general: "Загальні", account: "Акаунт", privacy: "Приватність", notifications: "Сповіщення", chat_settings: "Налаштування чату", devices: "Пристрої", advanced: "Розширені", language: "Мова", language_desc: "Виберіть мову інтерфейсу", theme: "Тема оформлення", theme_desc: "Світла, темна або XP (для слабких ПК)", theme_light: "Світла", theme_dark: "Темна", theme_xp: "Windows XP (для слабких ПК)", sounds: "Звуки", sounds_desc: "Звуки сповіщень та кліків", edit_profile_desc: "Змінити ім'я, фото та опис", username: "Ім'я користувача", phone_visibility: "Хто бачить номер", avatar_visibility: "Хто бачить фото", everyone: "Всі", contacts: "Контакти", nobody: "Ніхто", messages: "Повідомлення", messages_desc: "Хто може писати першим", desktop_notif: "Сповіщення на робочому столі", message_preview: "Показувати текст повідомлення", chat_wallpaper: "Фон чату", standard: "Стандартний", text_size: "Розмір тексту", active_sessions: "Активні сесії", data_usage: "Використання даних", data_usage_desc: "Налаштування автозавантаження", proxy: "Налаштування проксі", proxy_desc: "Використовувати проксі-сервер", done: "Готово", create_story: "Створити історію", story_text: "Текст історії:", story_photo: "Фотографія (необов'язково):", choose_photo: "📷 Вибрати фото", remove_photo: "✕ Прибрати фото", publish: "Опублікувати", recording: "ЗАПИС", connecting: "З'єднання..."},
-      en: {title: "⚖️ Courtroom Live Messenger 2009", user: "User", online: "Online", away: "Away", busy: "Busy", my_profile: "👤 My Profile", edit: "✏️ Edit", name: "Name:", phone: "Phone:", status: "Status:", bio: "Bio:", welcome: "Welcome to the messenger!", change_photo: "📷 Change Photo", save: "💾 Save", add_contact: "➕ Contact", add_group: "➕ Group", search: "Global search (name, phone)...", select_chat: "Select a chat...", select_chat_desc: "Select a contact or create a new one...", profile: "ℹ️ Profile", my_story: "My Story", role: "Role:", members: "Members:", type_message: "Message", add_contact_title: "Add New Contact", add_group_title: "Create Group Chat", group_name: "Group Name:", select_members: "Select Members:", cancel: "Cancel", create: "Create", settings: "⚙️ Settings", general: "General", account: "Account", privacy: "Privacy", notifications: "Notifications", chat_settings: "Chat Settings", devices: "Devices", advanced: "Advanced", language: "Language", language_desc: "Choose interface language", theme: "Theme", theme_desc: "Light, dark or XP (for low-end PCs)", theme_light: "Light", theme_dark: "Dark", theme_xp: "Windows XP (for low-end PCs)", sounds: "Sounds", sounds_desc: "Notification and click sounds", edit_profile_desc: "Change name, photo and bio", username: "Username", phone_visibility: "Who sees my phone", avatar_visibility: "Who sees my photo", everyone: "Everyone", contacts: "Contacts", nobody: "Nobody", messages: "Messages", messages_desc: "Who can message me first", desktop_notif: "Desktop Notifications", message_preview: "Show message text", chat_wallpaper: "Chat Wallpaper", standard: "Standard", text_size: "Text Size", active_sessions: "Active Sessions", data_usage: "Data Usage", data_usage_desc: "Auto-download settings", proxy: "Proxy Settings", proxy_desc: "Use proxy server", done: "Done", create_story: "Create Story", story_text: "Story Text:", story_photo: "Photo (optional):", choose_photo: "📷 Choose Photo", remove_photo: "✕ Remove Photo", publish: "Publish", recording: "REC", connecting: "Connecting..."}
+      ru: {title: "⚖️ Live Messenger", user: "Пользователь", online: "В сети", away: "Нет на месте", busy: "Занят", my_profile: "👤 Мой профиль", edit: "✏️ Изменить", name: "Имя:", phone: "Телефон:", status: "Статус:", bio: "О себе:", welcome: "Добро пожаловать в мессенджер!", change_photo: "📷 Сменить фото", save: "💾 Сохранить", add_contact: "➕ Контакт", add_group: "➕ Группа", search: "Глобальный поиск (имя, номер)...", select_chat: "Выберите собеседника...", select_chat_desc: "Выберите контакт или создайте новый...", profile: "ℹ️ Профиль", my_story: "Моя история", role: "Роль:", members: "Участники:", type_message: "Сообщение", add_contact_title: "Добавить новый контакт", add_group_title: "Создать групповой чат", group_name: "Название группы:", select_members: "Выберите участников:", cancel: "Отмена", create: "Создать", settings: "⚙️ Настройки", general: "Общие", account: "Аккаунт", privacy: "Приватность", notifications: "Уведомления", chat_settings: "Настройки чата", devices: "Устройства", advanced: "Продвинутые", language: "Язык", language_desc: "Выберите язык интерфейса", theme: "Тема оформления", theme_desc: "Светлая, темная или XP (для слабых ПК)", theme_light: "Светлая", theme_dark: "Темная", theme_xp: "Windows XP (для слабых ПК)", sounds: "Звуки", sounds_desc: "Звуки уведомлений и кликов", edit_profile_desc: "Изменить имя, фото и описание", username: "Имя пользователя", phone_visibility: "Кто видит номер", avatar_visibility: "Кто видит фото", everyone: "Все", contacts: "Контакты", nobody: "Никто", messages: "Сообщения", messages_desc: "Кто может писать первым", desktop_notif: "Уведомления на рабочем столе", message_preview: "Показывать текст сообщения", chat_wallpaper: "Фон чата", standard: "Стандартный", text_size: "Размер текста", active_sessions: "Активные сессии", data_usage: "Использование данных", data_usage_desc: "Настройки автоскачивания", proxy: "Настройки прокси", proxy_desc: "Использовать прокси-сервер", done: "Готово", create_story: "Создать историю", story_text: "Текст истории:", story_photo: "Фотография (необязательно):", choose_photo: "📷 Выбрать фото", remove_photo: "✕ Убрать фото", publish: "Опубликовать", recording: "ЗАПИСЬ", connecting: "Соединение..."},
+      uk: {title: "⚖️ Live Messenger", user: "Користувач", online: "В мережі", away: "Немає на місці", busy: "Зайнятий", my_profile: "👤 Мій профіль", edit: "✏️ Змінити", name: "Ім'я:", phone: "Телефон:", status: "Статус:", bio: "Про себе:", welcome: "Ласкаво просимо до месенджера!", change_photo: "📷 Змінити фото", save: "💾 Зберегти", add_contact: "➕ Контакт", add_group: "➕ Група", search: "Глобальний пошук (ім'я, номер)...", select_chat: "Виберіть співрозмовника...", select_chat_desc: "Виберіть контакт або створіть новий...", profile: "ℹ️ Профіль", my_story: "Моя історія", role: "Роль:", members: "Учасники:", type_message: "Повідомлення", add_contact_title: "Додати новий контакт", add_group_title: "Створити груповий чат", group_name: "Назва групи:", select_members: "Виберіть учасників:", cancel: "Скасувати", create: "Створити", settings: "⚙️ Налаштування", general: "Загальні", account: "Акаунт", privacy: "Приватність", notifications: "Сповіщення", chat_settings: "Налаштування чату", devices: "Пристрої", advanced: "Розширені", language: "Мова", language_desc: "Виберіть мову інтерфейсу", theme: "Тема оформлення", theme_desc: "Світла, темна або XP (для слабких ПК)", theme_light: "Світла", theme_dark: "Темна", theme_xp: "Windows XP (для слабких ПК)", sounds: "Звуки", sounds_desc: "Звуки сповіщень та кліків", edit_profile_desc: "Змінити ім'я, фото та опис", username: "Ім'я користувача", phone_visibility: "Хто бачить номер", avatar_visibility: "Хто бачить фото", everyone: "Всі", contacts: "Контакти", nobody: "Ніхто", messages: "Повідомлення", messages_desc: "Хто може писати першим", desktop_notif: "Сповіщення на робочому столі", message_preview: "Показувати текст повідомлення", chat_wallpaper: "Фон чату", standard: "Стандартний", text_size: "Розмір тексту", active_sessions: "Активні сесії", data_usage: "Використання даних", data_usage_desc: "Налаштування автозавантаження", proxy: "Налаштування проксі", proxy_desc: "Використовувати проксі-сервер", done: "Готово", create_story: "Створити історію", story_text: "Текст історії:", story_photo: "Фотографія (необов'язково):", choose_photo: "📷 Вибрати фото", remove_photo: "✕ Прибрати фото", publish: "Опублікувати", recording: "ЗАПИС", connecting: "З'єднання..."},
+      en: {title: "⚖️ Live Messenger", user: "User", online: "Online", away: "Away", busy: "Busy", my_profile: "👤 My Profile", edit: "✏️ Edit", name: "Name:", phone: "Phone:", status: "Status:", bio: "Bio:", welcome: "Welcome to the messenger!", change_photo: "📷 Change Photo", save: "💾 Save", add_contact: "➕ Contact", add_group: "➕ Group", search: "Global search (name, phone)...", select_chat: "Select a chat...", select_chat_desc: "Select a contact or create a new one...", profile: "ℹ️ Profile", my_story: "My Story", role: "Role:", members: "Members:", type_message: "Message", add_contact_title: "Add New Contact", add_group_title: "Create Group Chat", group_name: "Group Name:", select_members: "Select Members:", cancel: "Cancel", create: "Create", settings: "⚙️ Settings", general: "General", account: "Account", privacy: "Privacy", notifications: "Notifications", chat_settings: "Chat Settings", devices: "Devices", advanced: "Advanced", language: "Language", language_desc: "Choose interface language", theme: "Theme", theme_desc: "Light, dark or XP (for low-end PCs)", theme_light: "Light", theme_dark: "Dark", theme_xp: "Windows XP (for low-end PCs)", sounds: "Sounds", sounds_desc: "Notification and click sounds", edit_profile_desc: "Change name, photo and bio", username: "Username", phone_visibility: "Who sees my phone", avatar_visibility: "Who sees my photo", everyone: "Everyone", contacts: "Contacts", nobody: "Nobody", messages: "Messages", messages_desc: "Who can message me first", desktop_notif: "Desktop Notifications", message_preview: "Show message text", chat_wallpaper: "Chat Wallpaper", standard: "Standard", text_size: "Text Size", active_sessions: "Active Sessions", data_usage: "Data Usage", data_usage_desc: "Auto-download settings", proxy: "Proxy Settings", proxy_desc: "Use proxy server", done: "Done", create_story: "Create Story", story_text: "Story Text:", story_photo: "Photo (optional):", choose_photo: "📷 Choose Photo", remove_photo: "✕ Remove Photo", publish: "Publish", recording: "REC", connecting: "Connecting..."}
     };
     let currentLang = 'ru';
 
@@ -4426,28 +4422,28 @@
 
     function getUserDatabase() {
       let stored = {};
-      try {stored = JSON.parse(localStorage.getItem('courtroom_users_db') || '{}');} catch (e) {stored = {};}
+      try {stored = JSON.parse(localStorage.getItem('Live_users_db') || '{}');} catch (e) {stored = {};}
       return Object.assign({}, DEFAULT_ACCOUNTS, stored);
     }
     function saveUserToDatabase(loginKey, password, displayName, type, username, lastUsernameChange) {
       try {
-        const stored = JSON.parse(localStorage.getItem('courtroom_users_db') || '{}');
+        const stored = JSON.parse(localStorage.getItem('Live_users_db') || '{}');
         stored[loginKey] = {password: password || '', displayName: displayName || loginKey, type: type || 'password', username: username || '', lastUsernameChange: lastUsernameChange || 0};
-        localStorage.setItem('courtroom_users_db', JSON.stringify(stored));
+        localStorage.setItem('Live_users_db', JSON.stringify(stored));
       } catch (e) {console.warn('DB save failed', e);}
     }
 
     function getMessengerDB() {
       let stored = {};
-      try {stored = JSON.parse(localStorage.getItem('courtroom_messenger_db') || '{}');} catch (e) {stored = {};}
+      try {stored = JSON.parse(localStorage.getItem('Live_messenger_db') || '{}');} catch (e) {stored = {};}
       return Object.assign({}, MESSENGER_DB, stored);
     }
 
     function saveMessengerContact(phone, name, avatar, username) {
       try {
-        const stored = JSON.parse(localStorage.getItem('courtroom_messenger_db') || '{}');
+        const stored = JSON.parse(localStorage.getItem('Live_messenger_db') || '{}');
         stored[phone] = {name: name, avatar: avatar, username: username || ''};
-        localStorage.setItem('courtroom_messenger_db', JSON.stringify(stored));
+        localStorage.setItem('Live_messenger_db', JSON.stringify(stored));
       } catch (e) { }
     }
 
@@ -4455,7 +4451,7 @@
     const defaultGroupAvatar = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><mask id='m'><rect width='100' height='100' fill='%23fff'/><circle cx='50' cy='35' r='22' fill='%23000'/><path d='M 20 85 C 20 55, 80 55, 80 85 V 100 H 20 Z' fill='%23000'/></mask></defs><g mask='url(%23m)'><circle cx='25' cy='35' r='20' fill='%2300a8ff'/><path d='M 0 80 C 0 55, 50 55, 50 80 V 100 H 0 Z' fill='%2300a8ff'/><circle cx='75' cy='35' r='20' fill='%2300a8ff'/><path d='M 50 80 C 50 55, 100 55, 100 80 V 100 H 50 Z' fill='%2300a8ff'/></g><circle cx='50' cy='35' r='22' fill='%2300a8ff'/><path d='M 20 85 C 20 55, 80 55, 80 85 V 100 H 20 Z' fill='%2300a8ff'/></svg>";
     const botAvatar = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='20' y='20' width='60' height='60' rx='15' fill='%23fff' stroke='%23000' stroke-width='6'/><path d='M 35 80 L 35 95 L 55 80' fill='%23fff' stroke='%23000' stroke-width='6' stroke-linejoin='round'/><line x1='50' y1='8' x2='50' y2='20' stroke='%23000' stroke-width='6'/><line x1='40' y1='8' x2='60' y2='8' stroke='%23000' stroke-width='6' stroke-linecap='round'/><circle cx='40' cy='45' r='5' fill='%23000'/><circle cx='60' cy='45' r='5' fill='%23000'/><path d='M 40 60 Q 50 70 60 60' fill='none' stroke='%23000' stroke-width='5' stroke-linecap='round'/><path d='M 20 35 Q 10 35 10 50 Q 10 65 20 65' fill='none' stroke='%23000' stroke-width='6' stroke-linecap='round'/><path d='M 80 35 Q 90 35 90 50 Q 90 65 80 65' fill='none' stroke='%23000' stroke-width='6' stroke-linecap='round'/></svg>";
     const locationIcon = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234a90e2' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z'></path><circle cx='12' cy='10' r='3'></circle><ellipse cx='12' cy='21' rx='7' ry='3' stroke-width='1.5'></ellipse></svg>";
-    const botId = 'bot_courtroom';
+    const botId = 'bot_live';
 
     let soundsEnabled = true;
     let privacySettings = {phone: 'all', avatar: 'all'};
@@ -4558,16 +4554,16 @@
       if (!contacts.find(c => c.id === botId)) {
         contacts.unshift({
           id: botId,
-          name: 'Courtroom Bot 🤖',
+          name: 'Live Bot 🤖',
           phone: '+7 (000) 000-00-00',
           status: 'online',
           avatar: botAvatar,
           role: 'Bot',
           bio: 'Ваш личный помощник и тестировщик.',
-          username: 'courtroom_bot'
+          username: 'live_bot'
         });
         threads[botId] = [
-          {who: 'them', author: 'Courtroom Bot', text: 'Привет! Я бот для тестирования. Напиши мне сообщение или позвони!', time: getNowTime(), id: Date.now()}
+          {who: 'them', author: 'Live Bot', text: 'Привет! Я бот для тестирования. Напиши мне сообщение или позвони!', time: getNowTime(), id: Date.now()}
         ];
       }
     }
@@ -4672,9 +4668,9 @@
       document.getElementById('view-username').textContent = '@' + myProfile.username;
 
       if (document.getElementById('login-remember').checked) {
-        try {localStorage.setItem('courtroom_remembered_user', username);} catch (e) { }
+        try {localStorage.setItem('Live_remembered_user', username);} catch (e) { }
       } else {
-        try {localStorage.removeItem('courtroom_remembered_user');} catch (e) { }
+        try {localStorage.removeItem('Live_remembered_user');} catch (e) { }
       }
 
       document.getElementById('login-overlay').classList.add('hidden');
@@ -4727,7 +4723,7 @@
       myProfile.loginKey = phone;
       myProfile.avatar = avatar;
       myProfile.role = 'User';
-      myProfile.bio = 'Привет! Я использую Courtroom Live Messenger.';
+      myProfile.bio = 'Привет! Я использую Live Messenger Messenger.';
       myProfile.status = selectedLoginStatus;
 
       document.getElementById('login-overlay').classList.add('hidden');
@@ -4776,7 +4772,7 @@
         myProfile.avatar = data.avatar_url;
         myProfile.phone = '+7 (000) 000-00-00';
         myProfile.role = 'GitHub User';
-        myProfile.bio = data.bio || 'Привет! Я использую Courtroom Live Messenger.';
+        myProfile.bio = data.bio || 'Привет! Я использую Live Messenger Messenger.';
         myProfile.status = selectedLoginStatus;
 
          // В registerWithGitHub:
@@ -4830,7 +4826,7 @@
       myProfile.avatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(capitalizedName)}&background=4285F4&color=fff&size=128&bold=true`;
       myProfile.phone = '+7 (000) 000-00-00';
       myProfile.role = 'Google User';
-      myProfile.bio = 'Привет! Я использую Courtroom Live Messenger.';
+      myProfile.bio = 'Привет! Я использую Live Messenger Messenger.';
       myProfile.status = selectedLoginStatus;
       // В registerWithGoogle:
       myProfile.lastUsernameChange = Date.now();
@@ -5491,8 +5487,8 @@
           if (!lastMsg.reactions) lastMsg.reactions = {};
           const randomReaction = ['👍', '❤️', '😂', '🔥', '🤖'][Math.floor(Math.random() * 5)];
           if (!lastMsg.reactions[randomReaction]) lastMsg.reactions[randomReaction] = [];
-          if (!lastMsg.reactions[randomReaction].includes('Courtroom Bot')) {
-            lastMsg.reactions[randomReaction].push('Courtroom Bot');
+          if (!lastMsg.reactions[randomReaction].includes('Live Bot')) {
+            lastMsg.reactions[randomReaction].push('Live Bot');
           }
         }
         const botReplies = [
@@ -5504,7 +5500,7 @@
           'Кря-кря! (Ой, это из другой программы).'
         ];
         const newMsg = {
-          who: 'them', author: 'Courtroom Bot',
+          who: 'them', author: 'Live Bot',
           text: botReplies[Math.floor(Math.random() * botReplies.length)],
           time: getNowTime(), id: Date.now(), read: false
         };
@@ -5919,17 +5915,17 @@
 
           myProfile.username = newUsername;
           myProfile.lastUsernameChange = Date.now();
-          const udb = JSON.parse(localStorage.getItem('courtroom_users_db') || '{}');
+          const udb = JSON.parse(localStorage.getItem('Live_users_db') || '{}');
           const fullAccount = getUserDatabase()[myProfile.loginKey] || {};
           fullAccount.lastUsernameChange = myProfile.lastUsernameChange;
           fullAccount.username = newUsername;
           udb[myProfile.loginKey] = fullAccount;
-          localStorage.setItem('courtroom_users_db', JSON.stringify(udb));
+          localStorage.setItem('Live_users_db', JSON.stringify(udb));
 
-          const mdb = JSON.parse(localStorage.getItem('courtroom_messenger_db') || '{}');
+          const mdb = JSON.parse(localStorage.getItem('Live_messenger_db') || '{}');
           if (myProfile.phone && mdb[myProfile.phone]) {
             mdb[myProfile.phone].username = newUsername;
-            localStorage.setItem('courtroom_messenger_db', JSON.stringify(mdb));
+            localStorage.setItem('Live_messenger_db', JSON.stringify(mdb));
           }
         }
 
@@ -6055,7 +6051,7 @@
 
     (function init() {
       try {
-        const saved = localStorage.getItem('courtroom_remembered_user');
+        const saved = localStorage.getItem('Live_remembered_user');
         if (saved) {document.getElementById('login-username').value = saved; document.getElementById('login-remember').checked = true;}
       } catch (e) { }
       ['login-username', 'login-password'].forEach(id => {
